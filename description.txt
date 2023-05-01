@@ -1,0 +1,3 @@
+The aim of the project is to create a user interface that simplifies the configuration of HPC-Annotator software, which is a parallelization software for the main annotation software such as BLAST and Diamond, among others. 
+The interface should allow the user to customize the software settings in order to generate a software package with the desired specifications. 
+Once the software package is created, the user will be able to download it in TAR format and upload it onto the machine where the annotation will take place.
