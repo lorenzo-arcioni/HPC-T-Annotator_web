@@ -4,7 +4,7 @@ A web-based interface of the HPC-Annotator tool!
 ## Start
 Leggere attentamente le istruzioni nei file "Instructions_1" e "Instructions_2" (in questo ordine).
 
-I pdf sono in alta qualità, è consigliato scaricarli.
+I file pdf sono in alta qualità, per questo potrebbero non essere visualizzati al meglio all'interno di GitHub, è quindi consigliato scaricarli e visualizzarli con un reader pdf.
 
 ## Main Goal
 Sviluppo di una pagina web che rappresenta l'home page dell'applicazione HPC-Annotator.
