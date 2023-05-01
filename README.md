@@ -12,4 +12,4 @@ E' sufficiente un unico file .html (utilizzare come punto di partenza il file in
 Non ci sono limiti temporali (vige la regola: "prima è meglio è").
 Se dovessero esserci delle scadenze ci pensa **l'author** ( cioè io =) ).
 
-## Good Work!
+## Best wishes for a good job!
