@@ -3,12 +3,172 @@
     <head> 
         <meta charset="utf-8"> 
         <title> HPC-Annotator </title>
-        <!-- insert your code here-->
+
+        <style>
+                .setting{
+                    margin: 20px;
+                }
+
+                .SWM{
+                    padding-left: 10px;
+                }
+
+                .SAT{
+                    padding-left: 10px;
+                }
+
+                .conf{
+                    margin-left: 50px;
+                    margin-right: 50px;
+                    margin-bottom: 50px;
+                    padding-bottom: 10px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+                
+                .center{
+                    margin: 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                #sub_B{
+                    padding: 10px;
+                    font-size: 15px;
+
+                }
+
+
+        </style>
+        
+        
+        <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /> -->
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
+        
     </head>
     <body>
 
-        <!-- insert your code here-->
+        <div class="titolo" style="text-align: center;">
+            <h1>HPC-Annotator</h1>
+            <h2 id="sottotitolo">Generative Interface</h2>
+        </div>
 
+        <div class="descrizione">
+            <p style="text-align: center;">The aim of the project is to create a user interface that simplifies the configuration of HPC-Annotator software, which is a parallelization software for the main annotation software such as BLAST and Diamond, among others. 
+                The interface should allow the user to customize the software settings in order to generate a software package with the desired specifications. 
+                Once the software package is created, the user will be able to download it in TAR format and upload it onto the machine where the annotation will take place.</p>
+        </div>
+
+        <form method="post">
+
+            <div class="setting" style="border: 2px solid black;">
+                <div class="SWM">
+                    <p style="margin-top: 4px; margin-left: -12px;"><span style="border: 2px solid black; padding: 4px;">Select workload manager</span></p></p>
+                    <input type="radio" id="Slurm" value="Slurm" name="workload">
+                    <label for="Slurm">Slurm</label>
+                    <input type="radio" id="HTCondor" value="HTCondor" name="workload">
+                    <label for="Slurm">HTCondor</label>
+                    <input type="radio" id="None" value="None" name="workload" checked>
+                    <label for="Slurm">None</label><br><br><br>
+                </div>
+
+                <div class="conf" style="border: 2px solid black;">
+                    <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">Slurm configuration settings</span></p>
+                        
+                    <label for="Aname">Account name: </label>
+                    <input type="text" name="Aname" id="Aname">
+                    <label for="Spart">Serial partition: </label>
+                    <input type="text" name="Spart" id="Spart">
+                    <label for="Part">Parallel partition: </label>
+                    <input type="text" name="Part" id="Part">
+                    <br>
+                    <br>
+                    <label for="Nproces">Number of processes: </label>
+                    <input type="number" name="Nproces" id="Nproces" style="width: 40px;" min=1 value=1>
+                    <label for="Nthread">Number of threads: </label>
+                    <input type="number" name="Nthread" id="Nthread" style="width: 40px;" min=1 value=1>
+                    <label for="Time">Wall-time(hours): </label>
+                    <input type="number" name="Time" id="Time" style="width: 40px;" min=1 value=1>
+                    <label for="Mproces">Memory per process: </label>
+                    <input type="number" name="Mproces" id="Mproces" style="width: 40px;" min=1 value=1>
+
+                </div>
+                <div class="conf" style="border: 2px solid black;">
+                    <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">HTCondor configuration settings</span></p>
+                        
+                    <label for="Aname">Account name: </label>
+                    <input type="text" name="Aname" id="Aname">
+                    <label for="Spart">Serial partition: </label>
+                    <input type="text" name="Spart" id="Spart">
+                    <label for="Part">Parallel partition: </label>
+                    <input type="text" name="Part" id="Part">
+                    <br>
+                    <br>
+                    <label for="Nproces">Number of processes: </label>
+                    <input type="number" name="Nproces" id="Nproces" style="width: 40px;" min=1 value=1>
+                    <label for="Nthread">Number of threads: </label>
+                    <input type="number" name="Nthread" id="Nthread" style="width: 40px;" min=1 value=1>
+                    <label for="Time">Wall-time(hours): </label>
+                    <input type="number" name="Time" id="Time" style="width: 40px;" min=1 value=1>
+                    <label for="Mproces">Memory per process: </label>
+                    <input type="number" name="Mproces" id="Mproces" style="width: 40px;" min=1 value=1>
+
+                </div>
+
+            </div>
+
+            <div class="setting" style="border: 2px solid black;">
+                <div class="SAT">
+                    <p style="margin-top: 4px; margin-left: -12px;"><span style="border: 2px solid black; padding: 4px;">Select the annotation tool</span></p></p>
+                    <input type="radio" id="Slurm" value="Slurm" name="annotation_software">
+                    <label for="Slurm">Blast</label>
+                    <input type="radio" id="HTCondor" value="HTCondor" name="annotation_software" checked>
+                    <label for="Slurm">Diamond</label>
+                    <br><br><br>
+
+
+                    <label for="tool-select">Choose a tool:</label>
+
+                    <select name="tools" id="tools">
+                        <option value="blastp">Blastp</option>
+                        <option value="blastx">Blastx</option>
+                    </select>
+
+                    <label for="Part">Database path</label>
+                    <input type="text" name="DB_path" id="DB_path">
+                    <br>
+                    <br>
+                    <label for="Part">Input file path</label>
+                    <input type="text" name="IF_path" id="IF_path">
+                    <label for="Part">Binary path</label>
+                    <input type="text" name="BI_path" id="BI_path">
+                    <br>
+                    <br>
+                    <label for="Part">Outformat</label>
+                    <input type="text" name="OF_path" id="OF_path">
+                    <br>
+                    <br>
+
+                </div>
+
+            </div>
+
+            <div class="center">
+                <button id="sub_B" type="reset"> 
+                    Clear and reset the fields
+                </button>
+
+                <button id="sub_B" type="submit"> 
+                    Generate
+                </button>
+            </div>
+
+
+
+        </form>
+
+    
     </body>
 
     <footer>
