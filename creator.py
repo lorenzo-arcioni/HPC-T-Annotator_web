@@ -98,7 +98,7 @@ def fill_startbase(processes, threads, inputfile, outformat, diamond, tool, bina
 
 	start.close()
 
-def fill_readbase(processes, threads, inputfile, outformat, diamond, tool, binary, database):
+def fill_readbase(processes, threads, outformat, diamond, tool, binary, database, wlm):
 
 	with open("./read.py", "w") as read:
 
