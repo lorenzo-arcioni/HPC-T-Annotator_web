@@ -29,7 +29,7 @@ def index():
         outformat = request.form['outformat']
         binary = request.form['BI_path']
 
-        fill_readbase(processes, threads, inputfile, outformat, diamond, tool, binary, database)
+        fill_readbase(processes, threads, outformat, diamond, tool, binary, database, wlm)
         
 
         return send_file('./read.py', as_attachment=True)
