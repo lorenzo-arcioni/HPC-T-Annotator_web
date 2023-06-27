@@ -42,9 +42,12 @@
 
         </style>
         
-        
-        <!-- <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /> -->
-        <script defer src="https://pyscript.net/latest/pyscript.js"></script> 
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script> 
+
+        <py-env>
+            - paths:
+              - ./creator.py
+        </py-env>
         
     </head>
     <body>
@@ -76,18 +79,18 @@
                 <div class="conf" style="border: 2px solid black;">
                     <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">Slurm configuration settings</span></p>
                         
-                    <label for="Aname">Account name: </label>
-                    <input type="text" name="Aname" id="Aname">
+                    <label for="Slurm_account_name">Account name: </label>
+                    <input type="text" name="Aname" id="Slurm_account_name">
                     <label for="Spart">Serial partition: </label>
-                    <input type="text" name="Spart" id="Spart">
+                    <input type="text" name="Spart" id="Slurm_serial_part">
                     <label for="Part">Parallel partition: </label>
-                    <input type="text" name="Part" id="Part">
+                    <input type="text" name="Part" id="Slurm_parallel_part">
                     <br>
                     <br>
                     <label for="Nproces">Number of processes: </label>
-                    <input type="number" name="Nproces" id="Nproces" style="width: 40px;" min=1 value=1>
+                    <input type="number" name="Nproces" id="Slurm_Nproces" style="width: 40px;" min=1 value=1>
                     <label for="Nthread">Number of threads: </label>
-                    <input type="number" name="Nthread" id="Nthread" style="width: 40px;" min=1 value=1>
+                    <input type="number" name="Nthread" id="Slurm_Nthread" style="width: 40px;" min=1 value=1>
                     <label for="Time">Wall-time(hours): </label>
                     <input type="number" name="Time" id="Time" style="width: 40px;" min=1 value=1>
                     <label for="Mproces">Memory per process: </label>
@@ -155,7 +158,7 @@
             </div>
 
             <div class="center">
-                <button id="sub_B" type="reset"> 
+                <button id="reset" type="reset"> 
                     Clear and reset the fields
                 </button>
 
@@ -163,8 +166,6 @@
                     Generate
                 </button>
             </div>
-
-
 
         </form>
 
