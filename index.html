@@ -80,21 +80,21 @@
                     <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">Slurm configuration settings</span></p>
                         
                     <label for="Slurm_account_name">Account name: </label>
-                    <input type="text" name="Aname" id="Slurm_account_name">
+                    <input type="text" name="Slurm_account_name" id="Slurm_account_name">
                     <label for="Spart">Serial partition: </label>
-                    <input type="text" name="Spart" id="Slurm_serial_part">
+                    <input type="text" name="Slurm_serial_part" id="Slurm_serial_part">
                     <label for="Part">Parallel partition: </label>
-                    <input type="text" name="Part" id="Slurm_parallel_part">
+                    <input type="text" name="Slurm_parallel_part" id="Slurm_parallel_part">
                     <br>
                     <br>
                     <label for="Nproces">Number of processes: </label>
-                    <input type="number" name="Nproces" id="Slurm_Nproces" style="width: 40px;" min=1 value=1>
+                    <input type="number" name="Slurm_Nproces" id="Slurm_Nproces" style="width: 40px;" min=1 value=1>
                     <label for="Nthread">Number of threads: </label>
-                    <input type="number" name="Nthread" id="Slurm_Nthread" style="width: 40px;" min=1 value=1>
+                    <input type="number" name="Slurm_Nthread" id="Slurm_Nthread" style="width: 40px;" min=1 value=1>
                     <label for="Time">Wall-time(hours): </label>
-                    <input type="number" name="Time" id="Time" style="width: 40px;" min=1 value=1>
+                    <input type="number" name="Slurm_Time" id="Time" style="width: 40px;" min=1 value=1>
                     <label for="Mproces">Memory per process: </label>
-                    <input type="number" name="Mproces" id="Mproces" style="width: 40px;" min=1 value=1>
+                    <input type="number" name="Slurm_Mproces" id="Mproces" style="width: 40px;" min=1 value=1>
 
                 </div>
                 <div class="conf" style="border: 2px solid black;">
@@ -133,7 +133,7 @@
 
                     <label for="tool-select">Choose a tool:</label>
 
-                    <select name="tools" id="tools">
+                    <select name="tool" id="tool">
                         <option value="blastp">Blastp</option>
                         <option value="blastx">Blastx</option>
                     </select>
@@ -149,7 +149,7 @@
                     <br>
                     <br>
                     <label for="Part">Outformat</label>
-                    <input type="text" name="OF_path" id="OF_path">
+                    <input type="text" name="outformat" id="outformat">
                     <br>
                     <br>
 
