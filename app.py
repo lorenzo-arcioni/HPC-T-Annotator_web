@@ -32,7 +32,7 @@ def index():
         fill_readbase(processes, threads, inputfile, outformat, diamond, tool, binary, database)
         
 
-        return send_file('file.txt', as_attachment=True)
+        return send_file('./read.py', as_attachment=True)
 
     return open("index.html", "r").read()
 
