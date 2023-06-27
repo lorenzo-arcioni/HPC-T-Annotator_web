@@ -11,7 +11,7 @@ def index():
             f.write(contenuto)
         return send_file('file.txt', as_attachment=True)
 
-    return render_template('index.html')
+    return open("index.html", "r").read()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
