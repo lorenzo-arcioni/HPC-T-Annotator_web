@@ -1,23 +1,32 @@
 from flask import Flask, request, send_file, render_template
 from creator import *
+import random
+import string
+import os
+import subprocess as sp
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        wlm = request.form['workload']
 
-        if wlm == 'Slurm':
+        tmp_dir = 'tmp_' + ''.join(random.choices(string.ascii_lowercase, k=10))
+        os.mkdir(tmp_dir)
+        os.chdir(tmp_dir)
+
+        wlm = request.form['workload'].lower()
+
+        if wlm == 'slurm':
             account_name = request.form['Slurm_account_name']
             serial_part = request.form['Slurm_serial_part']
             parallel_part = request.form['Slurm_parallel_part']
-            Nproces = request.form['Slurm_Nproces']
-            Nthread = request.form['Slurm_Nthread']
+            process = request.form['Slurm_Nproces']
+            threads = request.form['Slurm_Nthread']
             Time = request.form['Time']
-            Mproces = request.form['Mproces']
+            Mprocess = request.form['Mproces']
 
-        elif wlm == 'HTCondor':
+        elif wlm == 'htcondor':
             pass
         else:
             pass
@@ -29,7 +38,9 @@ def index():
         outformat = request.form['outformat']
         binary = request.form['BI_path']
 
-        fill_readbase(processes, threads, outformat, diamond, tool, binary, database, wlm)
+        # python3 creator.py -p $processes -i "$inputfile" -f "$outfmt" -T $tool -t $threads -d "$database" -b "$binary" -w "$wlm" -D $diamond
+
+        sp.call("python3 creator.py -p {} -i {} -f {} -T {} -t {} -d {} -b {} -w {} -D {}".format(process, inputfile, outformat, tool, threads, database, binary, wlm, diamond), shell=True)
         
 
         return send_file('./read.py', as_attachment=True)
