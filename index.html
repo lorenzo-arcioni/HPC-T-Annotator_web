@@ -5,7 +5,7 @@
         <title> HPC-Annotator </title>
 
         <style>
-                .setting{
+                .software_setting, .wlm_setting{
                     margin: 20px;
                 }
 
@@ -33,7 +33,7 @@
                     align-items: center;
                 }
 
-                #sub_B{
+                #sub_B, #reset{
                     padding: 10px;
                     font-size: 15px;
 
@@ -58,14 +58,14 @@
 
         <form method="post">
 
-            <div class="setting" style="border: 2px solid black;">
+            <div class="wlm_setting" style="border: 2px solid black;">
                 <div class="SWM">
                     <p style="margin-top: 4px; margin-left: -12px;"><span style="border: 2px solid black; padding: 4px;">Select workload manager</span></p></p>
-                    <input type="radio" id="Slurm" value="Slurm" name="workload">
+                    <input type="radio" id="slurm" value="slurm" name="workload_manager">
                     <label for="Slurm">Slurm</label>
-                    <input type="radio" id="HTCondor" value="HTCondor" name="workload">
+                    <input type="radio" id="htcondor" value="htcondor" name="workload_manager">
                     <label for="Slurm">HTCondor</label>
-                    <input type="radio" id="None" value="None" name="workload" checked>
+                    <input type="radio" id="none" value="none" name="workload_manager" checked>
                     <label for="Slurm">None</label><br><br><br>
                 </div>
 
@@ -90,9 +90,9 @@
                     <input type="number" name="Slurm_Mproces" id="Mproces" style="width: 40px;" min=1 value=1>
 
                 </div>
+                <!--
                 <div class="conf" style="border: 2px solid black;">
                     <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">HTCondor configuration settings</span></p>
-                        
                     <label for="Aname">Account name: </label>
                     <input type="text" name="Aname" id="Aname">
                     <label for="Spart">Serial partition: </label>
@@ -110,16 +110,16 @@
                     <label for="Mproces">Memory per process: </label>
                     <input type="number" name="Mproces" id="Mproces" style="width: 40px;" min=1 value=1>
 
-                </div>
+                </div> -->
 
             </div>
 
-            <div class="setting" style="border: 2px solid black;">
+            <div class="software_setting" style="border: 2px solid black;">
                 <div class="SAT">
                     <p style="margin-top: 4px; margin-left: -12px;"><span style="border: 2px solid black; padding: 4px;">Select the annotation tool</span></p></p>
-                    <input type="radio" id="Slurm" value="Slurm" name="annotation_software">
+                    <input type="radio" id="blast" value="blast" name="annotation_software">
                     <label for="Slurm">Blast</label>
-                    <input type="radio" id="HTCondor" value="HTCondor" name="annotation_software" checked>
+                    <input type="radio" id="diamond" value="diamond" name="annotation_software" checked>
                     <label for="Slurm">Diamond</label>
                     <br><br><br>
 
