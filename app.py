@@ -82,11 +82,12 @@ def index():
     if request.method == 'POST':
 
         tmp_dir = 'tmp_' + ''.join(random.choices(string.ascii_lowercase, k=10))
-        os.mkdir(tmp_dir)
-        os.chdir(tmp_dir)
+        home_path = "/home/lorenzo/sites/HPC-Annotator_web-interface/"
+        os.mkdir(home_path + tmp_dir)
+        os.chdir(home_path + tmp_dir)
 
         data_dic = dict()
-        """
+        
         data_dic['wlm'] = request.form['workload'].lower()
 
         if wlm == 'slurm':
@@ -102,7 +103,7 @@ def index():
             pass
         else:
             pass
-
+        
         data_dic['diamond'] = 1 if request.form['annotation_software'] == 'Diamond' else 0
         data_dic['tool'] = request.form['tool']
         data_dic['database'] = request.form['DB_path']
@@ -110,8 +111,8 @@ def index():
         data_dic['outformat'] = request.form['outformat']
         data_dic['binary'] = request.form['BI_path']
 
-        # python3 creator.py -p $processes -i "$inputfile" -f "$outfmt" -T $tool -t $threads -d "$database" -b "$binary" -w "$wlm" -D $diamond
-
+        # python3 creator.py -p $processes -i "$inputfile" -f "$outfmt" -T $tool -t $threads -d "$database" -b "$binary" -w "$wlm" -D $diamon  d
+        """
         fill_startbase(data_dic)
 
         #sp.call("python3 creator.py -p {} -i {} -f {} -T {} -t {} -d {} -b {} -w {} -D {}".format(process, inputfile, outformat, tool, threads, database, binary, wlm, diamond), shell=True)
