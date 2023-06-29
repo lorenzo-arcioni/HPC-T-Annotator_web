@@ -84,9 +84,10 @@ def index():
         tmp_dir = 'tmp_' + ''.join(random.choices(string.ascii_lowercase, k=10))
         home_path = "/home/lorenzo/sites/HPC-Annotator_web-interface/"
         os.mkdir(home_path + tmp_dir)
-        os.chdir(home_path + tmp_dir)
 
         data_dic = dict()
+        data_dic['tmp_system_path'] = home_path + tmp_dir
+        
         
         data_dic['wlm'] = request.form['workload'].lower()
 
