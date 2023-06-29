@@ -123,7 +123,7 @@ def index():
         #sp.call("tar -xzf hpc-annotator.tar.gz read.py start.sh control_script.sh", shell=True)
         
 
-        return send_file('./read.py', as_attachment=True)
+        return send_file('./start.sh', as_attachment=True)
 
     return open("index.html", "r").read()
 
