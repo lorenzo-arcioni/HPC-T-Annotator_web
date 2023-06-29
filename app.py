@@ -42,7 +42,7 @@ def index():
                 start.write("#SBATCH --cpus-per-task=1" + '\n')
                 start.write("#SBATCH --mem=10GB" + '\n')
                 start.write("#SBATCH --time=04:00:00" + '\n')
-                start.write("#SBATCH --partition=" + serial_part + '\n\n')
+                start.write("#SBATCH --partition=" + data_dic['serial_part'] + '\n\n')
                 start.write(""" inputfile="{}"
                                 processes={}
                                 threads={}
@@ -77,11 +77,7 @@ def index():
         - wlm: The workload manager for the process.
         """
 
-        with open("./Bases/read_base.txt", "r") as f:
-            # Write the content of read_base.txt to start.sh
-            start.write(f.read())
-            f.close()
-        
+        pass
 
     if request.method == 'POST':
 
