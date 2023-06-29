@@ -118,9 +118,9 @@ def index():
 
         fill_startbase(data_dic)
 
-        sp.call("python3 creator.py -p {} -i {} -f {} -T {} -t {} -d {} -b {} -w {} -D {}".format(process, inputfile, outformat, tool, threads, database, binary, wlm, diamond), shell=True)
+        #sp.call("python3 creator.py -p {} -i {} -f {} -T {} -t {} -d {} -b {} -w {} -D {}".format(process, inputfile, outformat, tool, threads, database, binary, wlm, diamond), shell=True)
 
-        sp.call("tar -xzf hpc-annotator.tar.gz read.py start.sh control_script.sh", shell=True)
+        #sp.call("tar -xzf hpc-annotator.tar.gz read.py start.sh control_script.sh", shell=True)
         
 
         return send_file('./read.py', as_attachment=True)
