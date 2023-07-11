@@ -41,9 +41,39 @@
 
 
         </style>
+
+        <script>
+            function initPage() {
+                toggleConfigurationPanel();
+            }
+            function toggleConfigurationPanel() {
+                var slurmConfPanel = document.getElementById("slurmConfPanel");
+                var htcondorConfPanel = document.getElementById("htcondorConfPanel");
+                var noneConfPanel = document.getElementById("noneConfPanel");
+
+                var slurmRadio = document.getElementById("slurm");
+                var htcondorRadio = document.getElementById("htcondor");
+                var noneRadio = document.getElementById("none");
+
+                if (slurmRadio.checked) {
+                    slurmConfPanel.style.display = "block";
+                    htcondorConfPanel.style.display = "none";
+                    noneConfPanel.style.display = "none";
+                } else if (htcondorRadio.checked) {
+                    slurmConfPanel.style.display = "none";
+                    htcondorConfPanel.style.display = "block";
+                    noneConfPanel.style.display = "none";
+                } else if (noneRadio.checked) {
+                    slurmConfPanel.style.display = "none";
+                    htcondorConfPanel.style.display = "none";
+                    noneConfPanel.style.display = "block";
+                }
+            }
+
+        </script>
         
     </head>
-    <body>
+    <body onload="initPage()">
 
         <div class="titolo" style="text-align: center;">
             <h1>HPC-Annotator</h1>
@@ -56,43 +86,46 @@
                 Once the software package is created, the user will be able to download it in TAR format and upload it onto the machine where the annotation will take place.</p>
         </div>
 
-        <form method="post">
+        <form method="POST">
 
             <div class="wlm_setting" style="border: 2px solid black;">
                 <div class="SWM">
                     <p style="margin-top: 4px; margin-left: -12px;"><span style="border: 2px solid black; padding: 4px;">Select workload manager</span></p></p>
-                    <input type="radio" id="slurm" value="slurm" name="workload_manager">
+                    <input type="radio" id="slurm" value="slurm" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
                     <label for="Slurm">Slurm</label>
-                    <input type="radio" id="htcondor" value="htcondor" name="workload_manager">
+                    <input type="radio" id="htcondor" value="htcondor" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
                     <label for="Slurm">HTCondor</label>
-                    <input type="radio" id="none" value="none" name="workload_manager" checked>
+                    <input type="radio" id="none" value="none" name="workload_manager" checked onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
                     <label for="Slurm">None</label><br><br><br>
                 </div>
-
-                <div class="conf" style="border: 2px solid black;">
-                    <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">Slurm configuration settings</span></p>
-                        
-                    <label for="Slurm_account_name">Account name: </label>
-                    <input type="text" name="Slurm_account_name" id="Slurm_account_name">
-                    <label for="Spart">Serial partition: </label>
-                    <input type="text" name="Slurm_serial_part" id="Slurm_serial_part">
-                    <label for="Part">Parallel partition: </label>
-                    <input type="text" name="Slurm_parallel_part" id="Slurm_parallel_part">
-                    <br>
-                    <br>
-                    <label for="Nproces">Number of processes: </label>
-                    <input type="number" name="Slurm_Nproces" id="Slurm_Nproces" style="width: 40px;" min=1 value=1>
-                    <label for="Nthread">Number of threads: </label>
-                    <input type="number" name="Slurm_Nthread" id="Slurm_Nthread" style="width: 40px;" min=1 value=1>
-                    <label for="Time">Wall-time(hours): </label>
-                    <input type="number" name="Slurm_Time" id="Time" style="width: 40px;" min=1 value=1>
-                    <label for="Mproces">Memory per process: </label>
-                    <input type="number" name="Slurm_Mproces" id="Mproces" style="width: 40px;" min=1 value=1>
-
+            
+                <div class="conf" id="slurmConfPanel" style="border: 2px solid black; display: none;">
+                    <div class="slurmconf">
+                        <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">Slurm configuration settings</span></p>
+                            
+                        <label for="Slurm_account_name">Account name: </label>
+                        <input type="text" name="Slurm_account_name" id="Slurm_account_name">
+                        <label for="Spart">Serial partition: </label>
+                        <input type="text" name="Slurm_serial_part" id="Slurm_serial_part">
+                        <label for="Part">Parallel partition: </label>
+                        <input type="text" name="Slurm_parallel_part" id="Slurm_parallel_part">
+                        <br>
+                        <br>
+                        <label for="Nproces">Number of processes: </label>
+                        <input type="number" name="Slurm_Nprocess" id="Slurm_Nprocess" style="width: 40px;" min=1 value=1>
+                        <label for="Nthread">Number of threads: </label>
+                        <input type="number" name="Slurm_Nthreads" id="Slurm_Nthreads" style="width: 40px;" min=1 value=1>
+                        <label for="Time">Wall-time(hours): </label>
+                        <input type="number" name="Slurm_time" id="Time" style="width: 40px;" min=1 value=1>
+                        <label for="Mproces">Memory per process: </label>
+                        <input type="number" name="Slurm_Mprocess" id="Mprocess" style="width: 40px;" min=1 value=1>
+                    </div>
                 </div>
-                <!--
-                <div class="conf" style="border: 2px solid black;">
+            
+                <div class="conf" id="htcondorConfPanel" style="border: 2px solid black; display: none;">
                     <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">HTCondor configuration settings</span></p>
+                    Work in progress!
+                    <!--
                     <label for="Aname">Account name: </label>
                     <input type="text" name="Aname" id="Aname">
                     <label for="Spart">Serial partition: </label>
@@ -109,8 +142,21 @@
                     <input type="number" name="Time" id="Time" style="width: 40px;" min=1 value=1>
                     <label for="Mproces">Memory per process: </label>
                     <input type="number" name="Mproces" id="Mproces" style="width: 40px;" min=1 value=1>
+                    -->
+                </div>
 
-                </div> -->
+                <div class="conf" id="noneConfPanel" style="border: 2px solid black; display: block;">
+                    <p style="margin-top: 4px;"><span style="border: 2px solid black; margin-left: -12px;padding: 4px; margin-top: 5px;">Base configuration settings</span></p>
+                    
+                    <label for="Nproces">Number of processes: </label>
+                    <input type="number" name="Nprocess" id="Nprocess" style="width: 40px;" min=1 value=1>
+                    <br>
+                    <br>
+                    <label for="Part">Threads</label>
+                    <input type="number" name="threads" id="threads" style="width: 40px;" min=1 value=1>
+                </div>
+
+            </div>
 
             </div>
 
@@ -142,7 +188,11 @@
                     <br>
                     <br>
                     <label for="Part">Outformat</label>
-                    <input type="text" name="outformat" id="outformat">
+                    <input type="text" name="outformat" id="outformat" size="225">
+                    <br>
+                    <br>
+                    <label for="Part">Additional options</label>
+                    <input type="text" name="add_options" id="add_options" size="225">
                     <br>
                     <br>
 
