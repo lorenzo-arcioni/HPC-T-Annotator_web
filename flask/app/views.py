@@ -117,7 +117,7 @@ def index():
                     control.write(base)
                     f.close()
             
-            if data_dic['wlm'] == 'htcondor':
+            elif data_dic['wlm'] == 'htcondor':
                 pass
 
             else:

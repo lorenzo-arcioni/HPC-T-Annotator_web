@@ -40,7 +40,7 @@ def main():
 	
 	# Adding the outformat to the final file
 	with open(pwd+"/final_blast.tsv", "w") as f:
-		outfmt_list = outformat[:-1].split(" ")
+		outfmt_list = outformat.split(" ")
 		f.write("\t".join(outfmt_list[1:]))
 		f.write("\n")
 		f.close()
