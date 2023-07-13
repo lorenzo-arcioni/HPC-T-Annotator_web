@@ -191,6 +191,6 @@ def index():
     app_name = os.getenv("APP_NAME")
 
     if app_name:
-        return open("../index.html", "r").read()
+        return open("./index.html", "r").read()
 
     return "Hello from Flask"
