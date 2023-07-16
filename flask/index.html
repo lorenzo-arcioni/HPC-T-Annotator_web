@@ -43,33 +43,57 @@
         </style>
 
         <script>
-            function initPage() {
-                toggleConfigurationPanel();
-            }
-            function toggleConfigurationPanel() {
-                var slurmConfPanel = document.getElementById("slurmConfPanel");
-                var htcondorConfPanel = document.getElementById("htcondorConfPanel");
-                var noneConfPanel = document.getElementById("noneConfPanel");
+		function initPage() {
+			toggleConfigurationPanel();
+			document.getElementById("sub_B").addEventListener("click", validateForm);
+		}
 
-                var slurmRadio = document.getElementById("slurm");
-                var htcondorRadio = document.getElementById("htcondor");
-                var noneRadio = document.getElementById("none");
+		function toggleConfigurationPanel() {
+			var slurmConfPanel = document.getElementById("slurmConfPanel");
+			var htcondorConfPanel = document.getElementById("htcondorConfPanel");
+			var noneConfPanel = document.getElementById("noneConfPanel");
 
-                if (slurmRadio.checked) {
-                    slurmConfPanel.style.display = "block";
-                    htcondorConfPanel.style.display = "none";
-                    noneConfPanel.style.display = "none";
-                } else if (htcondorRadio.checked) {
-                    slurmConfPanel.style.display = "none";
-                    htcondorConfPanel.style.display = "block";
-                    noneConfPanel.style.display = "none";
-                } else if (noneRadio.checked) {
-                    slurmConfPanel.style.display = "none";
-                    htcondorConfPanel.style.display = "none";
-                    noneConfPanel.style.display = "block";
-                }
-            }
+			var slurmRadio = document.getElementById("slurm");
+			var htcondorRadio = document.getElementById("htcondor");
+			var noneRadio = document.getElementById("none");
 
+			if (slurmRadio.checked) {
+			    slurmConfPanel.style.display = "block";
+			    htcondorConfPanel.style.display = "none";
+			    noneConfPanel.style.display = "none";
+			} else if (htcondorRadio.checked) {
+			    slurmConfPanel.style.display = "none";
+			    htcondorConfPanel.style.display = "block";
+			    noneConfPanel.style.display = "none";
+			} else if (noneRadio.checked) {
+			    slurmConfPanel.style.display = "none";
+			    htcondorConfPanel.style.display = "none";
+			    noneConfPanel.style.display = "block";
+			}
+		}
+		    
+		function validateForm(){
+			var form = document.querySelector("form");
+			var inputs = form.querySelectorAll("input, select");
+			var isValid = true;
+
+			for (var i = 0; i < inputs.length; i++) {
+			    var input = inputs[i];
+
+			    if (input.offsetParent !== null && input.value.trim() === "") {
+				isValid = false;
+				input.style.backgroundColor = "#BDBDBD";
+			    }
+			    else{
+			    	input.style.backgroundColor = ""
+			    }
+			}
+
+			if (!isValid){
+			    event.preventDefault();
+			    window.alert("Please fill all field!")
+			}
+		}
         </script>
         
     </head>
@@ -86,7 +110,7 @@
                 Once the software package is created, the user will be able to download it in TAR format and upload it onto the machine where the annotation will take place.</p>
         </div>
 
-        <form method="POST">
+        <form method="POST" id="form">
 
             <div class="wlm_setting" style="border: 2px solid black;">
                 <div class="SWM">
