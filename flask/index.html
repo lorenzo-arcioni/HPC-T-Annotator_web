@@ -20,8 +20,8 @@
                 .conf{
                     margin-left: 50px;
                     margin-right: 50px;
-                    margin-bottom: 50px;
-                    padding-bottom: 10px;
+                    margin-bottom: 30px;
+                    padding-bottom: 8px;
                     padding-left: 10px;
                     padding-right: 10px;
                 }
@@ -112,7 +112,7 @@
 
         <form method="POST" id="form">
 
-            <div class="wlm_setting" style="border: 2px solid black;">
+            <div class="wlm_setting" style="border: 2px solid black; padding: -3px">
                 <div class="SWM">
                     <p style="margin-top: 4px; margin-left: -12px;"><span style="border: 2px solid black; padding: 4px;">Select workload manager</span></p></p>
                     <input type="radio" id="slurm" value="slurm" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
@@ -200,18 +200,21 @@
                         <option value="blastp">Blastp</option>
                         <option value="blastx">Blastx</option>
                     </select>
-
-                    <label for="Part">Database path</label>
-                    <input type="text" name="DB_path" id="DB_path">
+		    <br>
+		    <br>
+                    <label for="Part">Database path------</label>
+                    <input type="text" name="DB_path" id="DB_path" size="225">
                     <br>
                     <br>
-                    <label for="Part">Input file path</label>
-                    <input type="text" name="IF_path" id="IF_path">
-                    <label for="Part">Binary path</label>
-                    <input type="text" name="BI_path" id="BI_path">
+                    <label for="Part">Input file path------</label>
+                    <input type="text" name="IF_path" id="IF_path" size="225">
                     <br>
                     <br>
-                    <label for="Part">Outformat</label>
+                    <label for="Part">Binary path----------</label>
+                    <input type="text" name="BI_path" id="BI_path" size="225">
+                    <br>
+                    <br>
+                    <label for="Part">Outformat------------</label>
                     <input type="text" name="outformat" id="outformat" size="225">
                     <br>
                     <br>
