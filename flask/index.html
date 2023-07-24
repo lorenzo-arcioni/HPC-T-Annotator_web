@@ -88,10 +88,24 @@
 			    	input.style.backgroundColor = ""
 			    }
 			}
+			if (!isValid){
+			    event.preventDefault();
+			    window.alert("Please fill all field!");
+			    exit(0)
+			}
+		    // Check if the outformat has the correct format with double quotes
+		    var outformatInput = document.getElementById("outformat");
+
+		    if (!outformatInput.value.match('\".*6 .*\"')) {
+			isValid = false;
+			outformatInput.style.backgroundColor = "#BDBDBD";
+		    } else {
+			outformatInput.style.backgroundColor = "";
+		    }
 
 			if (!isValid){
 			    event.preventDefault();
-			    window.alert("Please fill all field!")
+			    window.alert("There is an error in the outformat.\nRemember the double quotes and the correct spaces.")
 			}
 		}
         </script>
@@ -109,9 +123,11 @@
                 The interface should allow the user to customize the software settings in order to generate a software package with the desired specifications. 
                 Once the software package is created, the user will be able to download it in TAR format and upload it onto the machine where the annotation will take place.</p>
         </div>
+        
+        <br>
 
         <form method="POST" id="form">
-
+	<p style="text-align: center;">In this section, you can choose which workload manager to use (Slurm or HTCondor) or generate scripts without any workload manager. Please note that all required fields are mandatory.</p>
             <div class="wlm_setting" style="border: 2px solid black; padding: -3px">
                 <div class="SWM">
                     <p style="margin-top: 4px; margin-left: -12px;"><span style="border: 2px solid black; padding: 4px;">Select workload manager</span></p></p>
@@ -183,7 +199,8 @@
             </div>
 
             </div>
-
+		<p style="text-align: center">In the section below, you can set the configuration of the annotation software you will be using. It is necessary to provide the binary path of the software, the input file path (in Multi-FASTA format), the reference database path, the output format to be used (for more information on the outformat, refer to the documentation of the annotation software), and any additional options to be passed to the software (for additional options, refer to the documentation of the annotation software). <p style="font-weight: bold;text-align: center;">Please note that it is absolutely mandatory to use the running machine absolute paths.</p>
+		</p>
             <div class="software_setting" style="border: 2px solid black;">
                 <div class="SAT">
                     <p style="margin-top: 4px; margin-left: -12px;"><span style="border: 2px solid black; padding: 4px;">Select the annotation tool</span></p></p>
@@ -202,24 +219,24 @@
                     </select>
 		    <br>
 		    <br>
-                    <label for="Part">Database path------</label>
+                    <label for="Part">Database path</label>
                     <input type="text" name="DB_path" id="DB_path" size="225">
                     <br>
                     <br>
-                    <label for="Part">Input file path------</label>
+                    <label for="Part">Input file path</label>
                     <input type="text" name="IF_path" id="IF_path" size="225">
                     <br>
                     <br>
-                    <label for="Part">Binary path----------</label>
+                    <label for="Part">Binary path</label>
                     <input type="text" name="BI_path" id="BI_path" size="225">
                     <br>
                     <br>
-                    <label for="Part">Outformat------------</label>
-                    <input type="text" name="outformat" id="outformat" size="225">
+                    <label for="Part">Outformat (please use the double quotes)</label>
+                    <input type="text" name="outformat" id="outformat" size="225" value="&#34; 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore &#34;">
                     <br>
                     <br>
                     <label for="Part">Additional options</label>
-                    <input type="text" name="add_options" id="add_options" size="225">
+                    <input type="text" name="add_options" id="add_options" size="225" value="-k 10 --ultra-sensitive">
                     <br>
                     <br>
 
