@@ -96,7 +96,7 @@
 		    // Check if the outformat has the correct format with double quotes
 		    var outformatInput = document.getElementById("outformat");
 
-		    if (!outformatInput.value.match('\".*6 .*\"')) {
+		    if (!outformatInput.value.match('\".*6.*\"') || !outformatInput.value.match('\".*-num_threads.*\"') || !outformatInput.value.match('\".*-out.*\"')){
 			isValid = false;
 			outformatInput.style.backgroundColor = "#BDBDBD";
 		    } else {
@@ -235,7 +235,8 @@
                     <input type="text" name="outformat" id="outformat" size="225" value="&#34;6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore&#34;">
                     <br>
                     <br>
-                    <label for="Part">Additional options</label>
+                    <label for="Part">Additional options (In note, only options related to computation are accepted; options 
+                                    indicating the usage of threads and input/output file names are not accepted.). So the options -p and -o for diamond or -out and -num_threads for blast are not accepted!</label>
                     <input type="text" name="add_options" id="add_options" size="225" value="-k 10 --ultra-sensitive">
                     <br>
                     <br>
