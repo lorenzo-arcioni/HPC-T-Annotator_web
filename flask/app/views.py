@@ -56,8 +56,7 @@ def index():
 
         if data_dic['wlm'] == 'slurm':
 
-            wlm_header = "#!/bin/bash" + '\n' \
-                        + "#SBATCH --account=" + data_dic['account_name'] + '\n' \
+            wlm_header =  "#SBATCH --account=" + data_dic['account_name'] + '\n' \
                         + "#SBATCH --partition=" + data_dic['parallel_part'] + '\n' \
                         + "#SBATCH --nodes=1" + '\n' \
                         + "#SBATCH --ntasks-per-node=1" + '\n' \
@@ -65,6 +64,7 @@ def index():
                         + "#SBATCH --mem=" + data_dic['memory_per_process'] + 'GB' + '\n' \
                         + "#SBATCH --output=general.out" + '\n' \
                         + "#SBATCH --error=general.err" + '\n'
+            
         elif data_dic['wlm'] == 'htcondor':
             pass
 
