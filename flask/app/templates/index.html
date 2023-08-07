@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta charset="utf-8"> 
+    <title> HPC-Annotator </title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <script src="static/scripts.js" defer></script>        
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+            <li><a href="help.html">Help</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="title">
+            <h1>HPC-Annotator</h1>
+            <h2 id="subtitle">Generative Interface</h2>
+        </div>
+
+        <div class="description">
+            <p>The aim of the project is to create a user interface that simplifies the configuration of HPC-Annotator software, which is a parallelization software for the main annotation software such as BLAST and Diamond, among others. 
+            The interface should allow the user to customize the software settings in order to generate a software package with the desired specifications. 
+            Once the software package is created, the user will be able to download it in TAR format and upload it onto the machine where the annotation will take place.</p>
+        </div>
+        
+        <form method="POST" id="form">
+            <div class="block">
+                <h3>Workload manager settings</h3>
+                <div class="workload">
+                    <h4>Select workload manager</h4>
+
+                    <input type="radio" id="slurm" value="slurm" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
+                    <label for="slurm">Slurm</label>
+                    <input type="radio" id="htcondor" value="htcondor" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
+                    <label for="htcondor">HTCondor</label>
+                    <input type="radio" id="none" value="none" name="workload_manager" checked onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
+                    <label for="none">None</label>
+                </div>
+            
+                <div class="conf" id="slurmConfPanel" style="display: none;">
+                    <h4>Slurm configuration settings</h4>
+
+                    <label for="Slurm_account_name">Account name: </label>
+                    <input type="text" name="Slurm_account_name" id="Slurm_account_name">
+                    <label for="Spart">Serial partition: </label>
+                    <input type="text" name="Slurm_serial_part" id="Slurm_serial_part">
+                    <label for="Part">Parallel partition: </label>
+                    <input type="text" name="Slurm_parallel_part" id="Slurm_parallel_part">
+                    <br>
+                    <br>
+                    <label for="Nproces">Number of processes: </label>
+                    <input type="number" name="Slurm_Nprocess" id="Slurm_Nprocess" style="width: 40px;" min=1 value=1>
+                    <label for="Nthread">Number of threads: </label>
+                    <input type="number" name="Slurm_Nthreads" id="Slurm_Nthreads" style="width: 40px;" min=1 value=1>
+                    <label for="Time">Wall-time(hours): </label>
+                    <input type="number" name="Slurm_time" id="Time" style="width: 40px;" min=1 value=1>
+                    <label for="Mproces">Memory per process: </label>
+                    <input type="number" name="Slurm_Mprocess" id="Mprocess" style="width: 40px;" min=1 value=1>
+                </div>
+            
+                <div class="conf" id="htcondorConfPanel" style="display: none;">
+                    <h4>HTCondor configuration settings</h4>
+                    Work in progress!
+                </div>
+
+                <div class="conf" id="noneConfPanel">
+                    <h4>Base configuration settings</h4>
+                    
+                    <label for="Nproces">Number of processes: </label>
+                    <input type="number" name="Nprocess" id="Nprocess" style="width: 40px;" min=1 value=1>
+                    <br>
+                    <br>
+                    <label for="Part">Threads</label>
+                    <input type="number" name="threads" id="threads" style="width: 40px;" min=1 value=1>
+                </div>
+
+            </div>
+
+            <div class="block">
+                <h3>Alignment software settings</h3>
+                <div class="SAT">
+                    <h4>Select the annotation tool</h4>
+                    <input type="radio" id="blast" value="blast" name="annotation_software">
+                    <label for="blast">Blast</label>
+                    <input type="radio" id="diamond" value="diamond" name="annotation_software" checked>
+                    <label for="diamond">Diamond</label>
+                    <br>
+                    <br>
+                    <br>
+                    <label for="tool-select">Choose a tool:</label>
+
+                    <select name="tool" id="tool">
+                        <option value="blastp">Blastp</option>
+                        <option value="blastx">Blastx</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label for="Part">Database absolute path</label><br>
+                    <input type="text" name="DB_path" id="DB_path" size="110">
+                    <br>
+                    <br>
+                    <label for="Part">Input file absolute path</label><br>
+                    <input type="text" name="IF_path" id="IF_path" size="110">
+                    <br>
+                    <br>
+                    <label for="Part">Binary absolute path</label><br>
+                    <input type="text" name="BI_path" id="BI_path" size="110">
+                    <br>
+                    <br>
+                    <label for="Part">Outformat (please use the double quotes)</label><br>
+                    <input type="text" name="outformat" id="outformat" size="110" value="&#34;6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore&#34;">
+                    <br>
+                    <br>
+                    <label for="Part">Additional options</label> 
+                    <button id="help_add_options" type="button" style="height: 18px;"> 
+                        <p style="margin-top: -1.5px;">?</p>
+                    </button>
+                    
+                    
+                    <br>
+                    <input type="text" name="add_options" id="add_options" value="" size="110">
+
+                </div>
+                
+            </div>
+            <div class="buttons">
+                <button id="reset" type="reset"> 
+                    Reset the fields
+                </button>
+
+                <button id="sub_B" type="submit"> 
+                    Generate
+                </button>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>
+

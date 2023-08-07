@@ -6,6 +6,7 @@ import os
 import subprocess as sp
 import shutil as sh
 
+@app.route("/index.html", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
 def index():
 
@@ -191,6 +192,12 @@ def index():
     app_name = os.getenv("APP_NAME")
 
     if app_name:
-        return open("./index.html", "r").read()
+        #return open("./app/html/index.html", "r").read()
+        return render_template('index.html')
 
     return "Hello from Flask"
+
+@app.route('/contacts.html')
+def contacts():
+    # Greet the user
+    return render_template("contacts.html")

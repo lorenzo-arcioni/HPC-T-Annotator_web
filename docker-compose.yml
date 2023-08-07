@@ -50,4 +50,3 @@ services:
     # Just make sure the directory exists before running docker-compose up --build
     volumes:
       - ./log/nginx:/var/log/nginx
-
