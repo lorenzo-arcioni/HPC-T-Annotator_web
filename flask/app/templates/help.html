@@ -2,27 +2,133 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>HPC-Annotator - Help</title>
-    <link rel="stylesheet" type="text/css" href="static/styles.css"> <!-- Added external CSS file -->
+    <title>HPC-Annotator Interface Guide</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <script src="static/scripts.js" defer></script>
 </head>
 <body>
-    <!-- Navbar section -->
-    <nav>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="contacts.html">Contacts</a></li>
+        <li><a href="help.html">Help</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="title">
+        <h1>HPC-Annotator Interface Guide</h1>
+        <h2 id="subtitle">Navigating the Generative Interface</h2>
+    </div>
+
+    <div class="description">
+        <p>Welcome to the user guide for the HPC-Annotator interface. This guide will help you understand and utilize the features of the interface to configure and generate a customized software package for parallelization tasks involving annotation software. Follow the steps below to effectively use the interface.</p>
+    </div>
+    <div class="block">
+        <h3>Step 1: Workload Manager Settings</h3>
+        <div>
+            <p>Select a workload manager to configure settings:</p>
+
+            <ul>
+                <li>
+                    <input type="radio" id="slurm" value="slurm" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
+                    <label for="slurm"><strong>Slurm</strong></label>
+                </li>
+                <li>
+                    <input type="radio" id="htcondor" value="htcondor" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
+                    <label for="htcondor"><strong>HTCondor</strong></label>
+                </li>
+                <li>
+                    <input type="radio" id="none" value="none" name="workload_manager" checked onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
+                    <label for="none"><strong>None</strong></label>
+                </li>
+            </ul>
+        </div>
+
+        <p>Based on your selection, different configuration options will be displayed.</p>
+
+        <!-- Slurm configuration settings description here -->
+        <div class="conf" id="slurmConfPanel" style="display: none;">
+            <h4>Slurm Configuration Settings</h4>
+            <p>Configure the settings for Slurm workload manager:</p>
+            <ul>
+                <li><strong>Account name</strong>: Specify the name of the account for job submission.</li>
+                <li><strong>Serial partition</strong>: Enter the name of the serial partition for single-threaded jobs.</li>
+                <li><strong>Parallel partition</strong>: Provide the name of the parallel partition for multi-threaded jobs.</li>
+                <li><strong>Number of processes</strong>: Set the desired number of processes.</li>
+                <li><strong>Number of threads</strong>: Define the number of threads per process.</li>
+                <li><strong>Wall-time(hours)</strong>: Specify the maximum duration of the job in hours.</li>
+                <li><strong>Memory per process:</strong> Enter the memory requirement per process.</li>
+            </ul>
+        </div>
+
+        <!-- HTCondor configuration settings description here -->
+        <div class="conf" id="htcondorConfPanel" style="display: none;">
+            <h4>HTCondor Configuration Settings</h4>
+            <p>Work in progress! HTCondor configuration settings will be available here.</p>
+        </div>
+
+        <!-- Base configuration settings description here -->
+        <div class="conf" id="noneConfPanel">
+            <h4>Base Configuration Settings</h4>
+            <p>Configure basic settings when no workload manager is selected:</p>
+            <ul>
+                <li><strong>Number of processes</strong>: Set the desired number of processes.</li>
+                <li><strong>Threads</strong>: Specify the number of threads for processing.</li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="block">
+        <h3>Step 2: Alignment Software Settings</h3>
+        <div>
+            <p>Select an annotation tool and configure settings:</p>
+
+            <ul>
+                <li>
+                    <input type="radio" id="blast" value="blast" name="annotation_software">
+                    <label for="blast"><strong>Blast</strong></label>
+                </li>
+                <li>
+                    <input type="radio" id="diamond" value="diamond" name="annotation_software" checked>
+                    <label for="diamond"><strong>Diamond</strong></label>
+                </li>
+            </ul>
+        </div>
+
+        <p>Configure the settings for the selected annotation software:</p>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="contacts.html">Contacts</a></li>
-            <li><a href="help.html">Help</a></li>
+            <li><strong>Select an annotation tool</strong>: Choose either Blast or Diamond as the annotation tool.</li>
+            <li><strong>Choose a tool</strong>: Select the specific tool to use (e.g., Blastp or Blastx).</li>
+            <li><strong>Database absolute path</strong>: Provide the absolute path to the annotation database.</li>
+            <li><strong>Input file absolute path</strong>: Specify the absolute path to the input file for annotation.</li>
+            <li><strong>Binary absolute path</strong>: Enter the absolute path to the annotation software binary.</li>
+            <li><strong>Outformat</strong>: Define the output format for annotation results using double quotes (e.g., "6 qseqid sseqid...").</li>
+            <li><strong>Additional options</strong> Enter any additional options that you would like to access and input any extra parameters required.</li>
         </ul>
-    </nav>
 
-    <h1>Help</h1>
-    <p>Here you can find helpful information and guides on using HPC-Annotator.</p>
-    <!-- Add your help content here -->
+        <p>In note, for <strong>Additional options</strong> field, only options related to computation are accepted; options indicating the usage of threads and input/output 
+            file names are not accepted. 
+            So the options -p and -o for diamond or -out and -num_threads for blast are not accepted!
+            Use this field to provide any additional command-line options or parameters for the annotation tool. These options should be entered as you would on the command line, separated by spaces.
+            For example, you can specify parameters like "-evalue 1e-5 -max_target_seqs 10" for a BLAST execution.</p>
+    </div>
+    <div class="block">
+        <h3>Generating the Software Package</h3>
+        <div>
+            <p>After configuring the settings for both workload manager and annotation software, you can:</p>
 
-    <!-- You can add any other content for the Help page -->
+            <ul>
+                <li>Click the <strong>Reset the Fields</strong> button to clear all entered data.</li>
+                <li>Click the <strong>Generate</strong> button to create the customized software package.</li>
+            </ul>
+        </div>
+    
 
+        <p>Once generated, you can download the software package in TAR format.</p>
+    </div>
+</div>
 </body>
-<footer>
-    <!-- insert your code here -->
-</footer>
 </html>
+

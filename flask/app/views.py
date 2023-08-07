@@ -199,5 +199,10 @@ def index():
 
 @app.route('/contacts.html')
 def contacts():
-    # Greet the user
+    # Contacts page
     return render_template("contacts.html")
+
+@app.route('/help.html')
+def help():
+    # Help page
+    return render_template("help.html")
