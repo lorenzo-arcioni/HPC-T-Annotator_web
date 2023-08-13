@@ -24,7 +24,20 @@
     </div>
 
     <div class="description">
-        <p>The logic behind the application can be summarized simply as follows: the user, who intends to perform the alignment process, provides HPC-T-Annotator with the input Multi-FASTA file. This file, which would typically be the analyzed file used with traditional alignment software, contains the sequences of interest. In order to expedite the alignment process, HPC-T-Annotator employs a distributed approach where the sequences within the input file are distributed and annotated separately and independently. This parallelization strategy enables us to achieve significant reductions in alignment time. By leveraging the power of distributed computing, HPC-T-Annotator harnesses the computational resources of an HPC cluster, allowing multiple alignment instances to be executed simultaneously. Each alignment instance compares a subset of sequences from the input file to a sequence database, inferring their functions based on homology. The results of these separate alignments are then consolidated to generate the final alignment output. This approach enables researchers to obtain comprehensive and accurate annotation results within significantly shorter timeframes, enhancing their ability to analyze and understand the functional roles of the expressed genes in the specific organism of interest.</p>
+        <p>The logic behind the application can be summarized simply as follows: the user, who intends to perform the alignment process, 
+           provides HPC-T-Annotator with the input Multi-FASTA file. This file, which would typically be the analyzed file used 
+           with traditional alignment software, contains the sequences of interest. In order to expedite 
+           the alignment process, HPC-T-Annotator employs a distributed approach where the sequences within the input file are distributed
+           and annotated separately and independently.</p>
+        <p>This parallelization strategy enables us to achieve significant reductions in 
+           alignment time. By leveraging the power of distributed computing, HPC-T-Annotator harnesses the computational resources of an 
+           HPC cluster, allowing multiple alignment instances to be executed simultaneously. Each alignment instance compares a subset of 
+           sequences from the input file to a sequence database, inferring their functions based on homology. The results of these separate alignments 
+           are then consolidated to generate the final alignment output.</p>
+        <p>This approach enables researchers to obtain comprehensive 
+           and accurate annotation results within significantly shorter timeframes, enhancing their ability to analyze and understand the 
+           functional roles of the expressed genes in the specific organism of interest.
+        </p>
     </div>
 
     <!-- Splitting the Input File -->
@@ -48,14 +61,7 @@
         <p>Finally, after the completion of all computations, the master process gathers the outputs from the sub-files and proceeds with a merging operation. This crucial merging step combines all the alignment results obtained from the individual files, consolidating them into a single file in a tab-separated value (tsv) format. By bringing together the alignments from different parts of the data, this unified file not only provides a comprehensive overview of the analysis but also facilitates researchers in efficiently accessing and interpreting the complete set of alignment results. Moreover, this streamlined approach ensures the seamless integration of information, ultimately simplifying further downstream analysis and enhancing overall productivity.</p>
     </div>
 
-    <!-- Control Process -->
-    <div class="block">
-        <h2>Step 4: Control Process</h2>
-        <p>A crucial component of this system is the control process, which acts as an orchestrator and manages the entire computation. Its primary role is to oversee the status of the processes executing the alignment phase on the partial sequence files.</p>
-        <p>During the alignment phase, the control process regularly checks the status of each individual process. It verifies whether they have successfully completed their respective tasks or if they are still ongoing. By maintaining a comprehensive overview of the progress, the control process can determine when all the processes have finished their alignment tasks on the partial files.</p>
-        <p>Once the control process confirms that all processes have completed their tasks, it proceeds to initiate the merging operation. This merging step brings together the results from all the partial files, integrating them into a cohesive whole. The control process orchestrates this merging process, ensuring that all alignment results are combined accurately.</p>
-        <p>By consolidating the alignment results from the partial files into a single comprehensive file, the control process simplifies the subsequent analysis. Researchers can easily access and interpret the merged file, which contains the complete set of alignments. This streamlined approach enhances efficiency and facilitates a more comprehensive understanding of the data.</p>
-    </div>
+    <!-- Workflow -->
     <div class="block">
         <div class="figure">
             <img src="static/logic-diagram2.png" 
