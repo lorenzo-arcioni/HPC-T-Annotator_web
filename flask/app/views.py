@@ -206,3 +206,13 @@ def contacts():
 def help():
     # Help page
     return render_template("help.html")
+
+@app.route('/start.html')
+def start():
+    # Help page
+    return render_template("start.html")
+
+@app.route('/architecture.html')
+def architecture():
+    # Help page
+    return render_template("architecture.html")
