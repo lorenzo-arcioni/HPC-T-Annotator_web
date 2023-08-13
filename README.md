@@ -1,2 +1,2 @@
-# HPC-Annotator_web-interface
-A web-based interface of the HPC-Annotator tool! 
+# HPC-T-Annotator_web
+A web-based interface of the HPCT--Annotator tool! 

@@ -178,15 +178,15 @@ def index():
 
         sp.run("chmod +x start.sh && chmod +x read.py && chmod +x control_script.sh", shell=True)
         sp.run("cp ../time_calculator.py .", shell=True)
-        sp.run("tar -cf hpc-annotator.tar read.py start.sh control_script.sh time_calculator.py", shell=True)
+        sp.run("tar -cf hpc-t-annotator.tar read.py start.sh control_script.sh time_calculator.py", shell=True)
 
-        tar = open("./hpc-annotator.tar", "r")
+        tar = open("./hpc-t-annotator.tar", "r")
         tar.seek(0)
 
         os.chdir("../")
         sh.rmtree(tmp_dir)
 
-        return send_file(tar, as_attachment=True, attachment_filename='hpc-annotator.tar', mimetype='text/plain')
+        return send_file(tar, as_attachment=True, attachment_filename='hpc-t-annotator.tar', mimetype='text/plain')
 
     # Use os.getenv("key") to get environment variables
     app_name = os.getenv("APP_NAME")
