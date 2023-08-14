@@ -10,6 +10,29 @@ import shutil as sh
 @app.route("/", methods=['GET', 'POST'])
 def index():
 
+    # Use os.getenv("key") to get environment variables
+    app_name = os.getenv("APP_NAME")
+
+    if app_name:
+        #return open("./app/html/index.html", "r").read()
+        return render_template('index.html')
+
+    return "Hello from Flask"
+
+@app.route('/contacts.html')
+def contacts():
+    # Contacts page
+    return render_template("contacts.html")
+
+@app.route('/help.html')
+def help():
+    # Help page
+    return render_template("help.html")
+
+@app.route('/start.html', methods=['GET', 'POST'])
+def start():
+    # Start page
+
     def fill_startbase(data_dic):
 
         # Open the start.sh file in write mode
@@ -187,29 +210,7 @@ def index():
         sh.rmtree(tmp_dir)
 
         return send_file(tar, as_attachment=True, attachment_filename='hpc-t-annotator.tar', mimetype='text/plain')
-
-    # Use os.getenv("key") to get environment variables
-    app_name = os.getenv("APP_NAME")
-
-    if app_name:
-        #return open("./app/html/index.html", "r").read()
-        return render_template('index.html')
-
-    return "Hello from Flask"
-
-@app.route('/contacts.html')
-def contacts():
-    # Contacts page
-    return render_template("contacts.html")
-
-@app.route('/help.html')
-def help():
-    # Help page
-    return render_template("help.html")
-
-@app.route('/start.html')
-def start():
-    # Help page
+    
     return render_template("start.html")
 
 @app.route('/architecture.html')
