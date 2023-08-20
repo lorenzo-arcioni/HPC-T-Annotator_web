@@ -117,8 +117,13 @@ nav ul li a:hover {
 
 #sub_B, #reset {
     padding: 10px;
-    font-size: 15px;
+    font-size: 18px;
     margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 200px;
+
+    font-weight: bold;
 }
 
 .caption {
@@ -153,7 +158,8 @@ nav ul li a:hover {
     padding: 20px;
 }
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width: 980px) {
     .settings {
         flex-direction: column;
         align-items: center;
@@ -161,5 +167,13 @@ nav ul li a:hover {
 
     .workload, .conf, .annotation {
         width: 100%;
+    }
+
+    .long_input {
+        width: 100%;
+    }
+
+    .icon {
+        display: none;
     }
 }
