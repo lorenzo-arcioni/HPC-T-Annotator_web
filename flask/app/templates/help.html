@@ -43,10 +43,6 @@
                     <label for="slurm"><strong>Slurm</strong></label>
                 </li>
                 <li>
-                    <input type="radio" id="htcondor" value="htcondor" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
-                    <label for="htcondor"><strong>HTCondor</strong></label>
-                </li>
-                <li>
                     <input type="radio" id="none" value="none" name="workload_manager" checked onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
                     <label for="none"><strong>None</strong></label>
                 </li>
@@ -68,12 +64,6 @@
                 <li><strong>Wall-time(hours)</strong>: Specify the maximum duration of the job in hours.</li>
                 <li><strong>Memory per process:</strong> Enter the memory requirement per process.</li>
             </ul>
-        </div>
-
-        <!-- HTCondor configuration settings description here -->
-        <div class="conf" id="htcondorConfPanel" style="display: none;">
-            <h4>HTCondor Configuration Settings</h4>
-            <p>Work in progress! HTCondor configuration settings will be available here.</p>
         </div>
 
         <!-- Base configuration settings description here -->

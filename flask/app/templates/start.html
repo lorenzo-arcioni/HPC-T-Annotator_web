@@ -50,8 +50,6 @@
 
                         <input type="radio" id="slurm" value="slurm" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
                         <label for="slurm">Slurm</label>
-                        <input type="radio" id="htcondor" value="htcondor" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
-                        <label for="htcondor">HTCondor</label>
                         <input type="radio" id="none" value="none" name="workload_manager" checked onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
                         <label for="none">None</label>
                     </div>
@@ -75,11 +73,6 @@
                         <input type="number" name="Slurm_time" id="Time" style="width: 40px;" min=1 value=1>
                         <label for="Mproces">Memory per process: </label>
                         <input type="number" name="Slurm_Mprocess" id="Mprocess" style="width: 40px;" min=1 value=1>
-                    </div>
-                
-                    <div class="conf" id="htcondorConfPanel" style="display: none;">
-                        <h4>HTCondor configuration settings</h4>
-                        Work in progress!
                     </div>
 
                     <div class="conf" id="noneConfPanel">

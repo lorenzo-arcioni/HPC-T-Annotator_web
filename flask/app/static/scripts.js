@@ -12,24 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function toggleConfigurationPanel() {
     var slurmConfPanel = document.getElementById("slurmConfPanel");
-    var htcondorConfPanel = document.getElementById("htcondorConfPanel");
     var noneConfPanel = document.getElementById("noneConfPanel");
 
     var slurmRadio = document.getElementById("slurm");
-    var htcondorRadio = document.getElementById("htcondor");
     var noneRadio = document.getElementById("none");
 
     if (slurmRadio.checked) {
         slurmConfPanel.style.display = "block";
-        htcondorConfPanel.style.display = "none";
-        noneConfPanel.style.display = "none";
-    } else if (htcondorRadio.checked) {
-        slurmConfPanel.style.display = "none";
-        htcondorConfPanel.style.display = "block";
         noneConfPanel.style.display = "none";
     } else if (noneRadio.checked) {
         slurmConfPanel.style.display = "none";
-        htcondorConfPanel.style.display = "none";
         noneConfPanel.style.display = "block";
     }
 }
