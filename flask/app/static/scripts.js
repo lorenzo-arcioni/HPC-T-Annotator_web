@@ -2,6 +2,8 @@ function initPage() {
     toggleConfigurationPanel();
     document.getElementById("sub_B").addEventListener("click", validateForm);
     document.getElementById("help_add_options").addEventListener("click", help_add_options);
+    document.getElementById("help_alignment").addEventListener("click", help_alignment);
+    document.getElementById("help_workload").addEventListener("click", help_workload);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -89,4 +91,12 @@ function validateForm(){
 
 function help_add_options(){
     window.alert("In note, only options related to computation are accepted; options indicating the usage of threads and input/output file names are not accepted. So the options -p and -o for diamond or -out and -num_threads for blast are not accepted!");
+}
+
+function help_workload(){
+    window.alert("In this section, you can configure the workload manager you wish to use, or you can choose not to use any workload manager.");
+}
+
+function help_alignment(){
+    window.alert("In this section, you can set the configuration of the annotation software you will be using. It is necessary to provide the binary path of the software, the input file path (in Multi-FASTA format), the reference database path, the output format to be used (for more information on the outformat, refer to the documentation of the alignment software), and any additional options to be passed to the software (for additional options, refer to the documentation of the annotation software). ");
 }
