@@ -201,7 +201,8 @@ def start():
 
         sp.run("chmod +x start.sh && chmod +x read.py && chmod +x control_script.sh", shell=True)
         sp.run("cp ../time_calculator.py .", shell=True)
-        sp.run("tar -cf hpc-t-annotator.tar read.py start.sh control_script.sh time_calculator.py", shell=True)
+        sp.run("cp ../splitter.py .", shell=True)
+        sp.run("tar -cf hpc-t-annotator.tar read.py start.sh control_script.sh time_calculator.py splitter.py", shell=True)
 
         tar = open("./hpc-t-annotator.tar", "r")
         tar.seek(0)
