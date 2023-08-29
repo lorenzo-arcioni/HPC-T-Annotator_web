@@ -49,7 +49,7 @@ def start():
                 start.write("#SBATCH --nodes=1" + '\n')
                 start.write("#SBATCH --ntasks=1" + '\n')
                 start.write("#SBATCH --cpus-per-task=1" + '\n')
-                start.write("#SBATCH --mem=8GB" + '\n')
+                start.write("#SBATCH --mem=5GB" + '\n')
                 start.write("#SBATCH --time=01:00:00" + '\n')
                 start.write("#SBATCH --partition=" + data_dic['serial_part'] + '\n\n')
                 start.write(open("../bases/start_base.txt").read().format(data_dic['inputfile'], 

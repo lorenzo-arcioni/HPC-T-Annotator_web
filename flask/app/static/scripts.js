@@ -2,6 +2,8 @@ function initPage() {
     toggleConfigurationPanel();
     document.getElementById("sub_B").addEventListener("click", validateForm);
     document.getElementById("help_add_options").addEventListener("click", help_add_options);
+    document.getElementById("help_outfmt").addEventListener("click", help_outfmt);
+    document.getElementById("help_db_path").addEventListener("click", help_db_path);
     document.getElementById("help_alignment").addEventListener("click", help_alignment);
     document.getElementById("help_workload").addEventListener("click", help_workload);
 }
@@ -82,7 +84,14 @@ function validateForm(){
 }
 
 function help_add_options(){
-    window.alert("In note, only options related to computation are accepted; options indicating the usage of threads and input/output file names are not accepted. So the options -p and -o for diamond or -out and -num_threads for blast are not accepted!");
+    window.alert("In note, only options related to computation are accepted; options indicating the usage of threads and input/output file names are not accepted. So the options -p and -o for diamond or -out and -num_threads for blast are not accepted! \
+                \n\n For example, you can specify parameters like \n\n  -evalue 1e-5 -max_target_seqs 10 \n\nfor a BLAST execution or \n\n  --ultra-sensitive -k 10 \n\nfor Diamond execution.");
+}
+function help_db_path(){
+    window.alert("In note, if you are using Diamond as alignment software you have to indicate the full path to .dmnd path; else if you are using BLAST you have to indicate the full path with the prefix of the database (eg. /path/to/nr).");
+}
+function help_outfmt(){
+    window.alert("In note, you can use all available keywords for both Diamond and BLAST. Refer to the software documentation for more informations about keywords.");
 }
 
 function help_workload(){

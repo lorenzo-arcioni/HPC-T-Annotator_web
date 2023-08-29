@@ -57,22 +57,39 @@
                     <div class="conf" id="slurmConfPanel" style="display: none;">
                         <h4>Slurm configuration settings</h4>
 
-                        <label for="Slurm_account_name">Account name: </label>
+                        <label for="Slurm_account_name"><b>Account name:</b> </label>
                         <input type="text" name="Slurm_account_name" id="Slurm_account_name">
-                        <label for="Spart">Serial partition: </label>
+                        Specify the name of the account for job submission.
+                        <br>
+                        <br>
+                        <label for="Spart"><b>Serial partition: </b></label>
                         <input type="text" name="Slurm_serial_part" id="Slurm_serial_part">
-                        <label for="Part">Parallel partition: </label>
+                        Partition with an hour of minimum wall-time execution and at least 5GB of RAM.
+                        <br>
+                        <br>
+                        <label for="Part"><b>Parallel partition:</b> </label>
                         <input type="text" name="Slurm_parallel_part" id="Slurm_parallel_part">
+                        Provide the name of the parallel partition for multi-threaded jobs.
                         <br>
                         <br>
-                        <label for="Nproces">Number of processes: </label>
+                        <label for="Nproces"><b>Number of processes:</b> </label>
                         <input type="number" name="Slurm_Nprocess" id="Slurm_Nprocess" style="width: 40px;" min=1 value=1>
-                        <label for="Nthread">Number of threads: </label>
+                        Set the desired number of processes. Must not excedeed the number of sequences.
+                        <br>
+                        <br>
+                        <label for="Nthread"><b>Number of threads: </b></label>
                         <input type="number" name="Slurm_Nthreads" id="Slurm_Nthreads" style="width: 40px;" min=1 value=1>
-                        <label for="Time">Wall-time(hours): </label>
+                        Define the number of threads per process.
+                        <br>
+                        <br>
+                        <label for="Time"><b>Wall-time (hours):</b></label>
                         <input type="number" name="Slurm_time" id="Time" style="width: 40px;" min=1 value=1>
-                        <label for="Mproces">Memory per process: </label>
+                        <U>Must be less then your parallel partition wall-time.</U>
+                        <br>
+                        <br>
+                        <label for="Mproces"><b>Memory per process (GB):</b></label>
                         <input type="number" name="Slurm_Mprocess" id="Mprocess" style="width: 40px;" min=1 value=1>
+                        Enter the memory requirement per process.
                     </div>
 
                     <div class="conf" id="noneConfPanel">
@@ -80,10 +97,12 @@
                         
                         <label for="Nproces">Number of processes: </label>
                         <input type="number" name="Nprocess" id="Nprocess" style="width: 40px;" min=1 value=1>
+                        Set the desired number of processes. Must not excedeed the number of sequences.
                         <br>
                         <br>
                         <label for="Part">Threads</label>
                         <input type="number" name="threads" id="threads" style="width: 40px;" min=1 value=1>
+                        Define the number of threads per process.
                     </div>
 
                 </div>
@@ -120,7 +139,11 @@
                         </select>
                         <br>
                         <br>
-                        <label for="Part">Database absolute path</label><br>
+                        <label for="Part">Database absolute path</label>
+                        <button id="help_db_path" type="button" style="height: 18px;"> 
+                            <p style="margin-top: -1.5px;">?</p>
+                        </button>
+                        <br>
                         <input class="long_input" type="text" name="DB_path" id="DB_path" size="110">
                         <br>
                         <br>
@@ -132,7 +155,11 @@
                         <input class="long_input" type="text" name="BI_path" id="BI_path" size="110">
                         <br>
                         <br>
-                        <label for="Part">Outformat (please use the double quotes)</label><br>
+                        <label for="Part">Outformat (please use the double quotes)</label>
+                        <button id="help_outfmt" type="button" style="height: 18px;"> 
+                            <p style="margin-top: -1.5px;">?</p>
+                        </button>
+                        <br>
                         <input class="long_input" type="text" name="outformat" id="outformat" size="110" value="&#34;6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore&#34;">
                         <br>
                         <br>
@@ -140,8 +167,6 @@
                         <button id="help_add_options" type="button" style="height: 18px;"> 
                             <p style="margin-top: -1.5px;">?</p>
                         </button>
-                        
-                        
                         <br>
                         <input class="long_input" type="text" name="add_options" id="add_options" value="" size="110">
 
