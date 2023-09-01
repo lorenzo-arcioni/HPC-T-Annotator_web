@@ -1,16 +1,42 @@
-function initPage() {
-    toggleConfigurationPanel();
-    document.getElementById("sub_B").addEventListener("click", validateForm);
-    document.getElementById("help_add_options").addEventListener("click", help_add_options);
-    document.getElementById("help_outfmt").addEventListener("click", help_outfmt);
-    document.getElementById("help_db_path").addEventListener("click", help_db_path);
-    document.getElementById("help_alignment").addEventListener("click", help_alignment);
-    document.getElementById("help_workload").addEventListener("click", help_workload);
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     initPage();
 });
+
+function initPage() {
+    toggleConfigurationPanel();
+
+    // Verifica se l'elemento con l'id "sub_B" esiste prima di aggiungere l'event listener
+    var sub_B_v = document.getElementById("sub_B");
+    if (sub_B_v) {
+        sub_B_v.addEventListener("click", validateForm);
+    }
+
+    // Esegui una verifica simile per gli altri elementi
+    var help_add_options_v = document.getElementById("help_add_options");
+    if (help_add_options_v) {
+        help_add_options_v.addEventListener("click", help_add_options);
+    }
+
+    var help_outfmt_v = document.getElementById("help_outfmt");
+    if (help_outfmt_v) {
+        help_outfmt_v.addEventListener("click", help_outfmt);
+    }
+
+    var help_db_path_v = document.getElementById("help_db_path");
+    if (help_db_path_v) {
+        help_db_path_v.addEventListener("click", help_db_path);
+    }
+
+    var help_alignment_v = document.getElementById("help_alignment");
+    if (help_alignment_v) {
+        help_alignment_v.addEventListener("click", help_alignment);
+    }
+
+    var help_workload_v = document.getElementById("help_workload");
+    if (help_workload_v) {
+        help_workload_v.addEventListener("click", help_workload);
+    }
+}
 
 function toggleConfigurationPanel() {
     var slurmConfPanel = document.getElementById("slurmConfPanel");
@@ -19,10 +45,10 @@ function toggleConfigurationPanel() {
     var slurmRadio = document.getElementById("slurm");
     var noneRadio = document.getElementById("none");
 
-    if (slurmRadio.checked) {
+    if (slurmRadio && slurmRadio.checked) {
         slurmConfPanel.style.display = "block";
         noneConfPanel.style.display = "none";
-    } else if (noneRadio.checked) {
+    } else if (noneRadio && noneRadio.checked) {
         slurmConfPanel.style.display = "none";
         noneConfPanel.style.display = "block";
     }

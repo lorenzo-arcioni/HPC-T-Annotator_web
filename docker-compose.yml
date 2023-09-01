@@ -10,7 +10,7 @@ services:
     build: ./flask
 
     # Give our flask container a friendly name
-    container_name: flask
+    container_name: hpc-t-annotator-flask
 
     # Instruct Docker to always restart the service
     restart: always
@@ -36,14 +36,14 @@ services:
     build: ./nginx
 
     # Give our nginx container a friendly name
-    container_name: nginx
+    container_name: hpc-t-annotator-nginx
 
     # Instruct Docker to always restart the service
     restart: always
 
     # Any ports listed using `ports` will be exposed to the outside world
     ports:
-      - "8080:80"
+      - "49152:80"
 
     # Mount the container log directory to the local log directory
     # Consider changing this to /var/log/nginx:/var/log/nginx in production

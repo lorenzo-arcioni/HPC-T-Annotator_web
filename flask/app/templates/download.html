@@ -13,6 +13,7 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="start.html">Start</a></li>
+            <li><a href="download.html">Download</a></li>
             <li><a href="architecture.html">Architecture</a></li>
             <li><a href="help.html">Help</a></li>
             <li><a href="contacts.html">Contacts</a></li>
@@ -26,150 +27,39 @@
                 <h1>HPC-T-Annotator</h1>
                 <img src="../static/logo.png" width="100" style="margin: auto;">
             </div>
-            <h2 id="subtitle"></h2>
+            <h2 id="subtitle">Interface-less execution</h2>
         </div>
 
         <div class="description">
-            <p>To generate the parallel software for the transcriptome annotation, 
-               please complete the two forms below: one pertaining to the settings of the workload manager, 
-               and the other concerning the details of the alignment software you wish to use (BLAST or DIAMOND), 
-               as well as the database against which the mapping will be performed.</p>
+            <p>If you have experience in running and developing bash scripts, you can use HPC-T-Annotator even without the assistance of the web interface by downloading the software directly from GitHub using the link below.</p>
+            <a class="github-button" href="https://github.com/lorenzo-arcioni/HPC-T-Annotator/archive/refs/heads/main.zip" target="_blank">Download from GitHub</a>
+            <p>After downloading and extracting the TAR archive, you can proceed as follows: perform the code generation phase, upload (if necessary) the generated TAR package to the HPC machine, and then start the computation.</p>
         </div>
-        
-        <form method="POST" id="form">
-            <div class="block" style="display: grid; grid-template-columns: auto 1fr; gap: 20px;">
-                <div>
-                    <div style="display: flex;">
-                        <h3>Workload manager settings</h3>
-                        <button class="help_settings" id="help_workload" type="button">
-                            <p style="margin-top: -1px; font-size: large;">?</p>
-                        </button>
-                    </div>
-                    <div class="workload">
-                        <h4>Select workload manager</h4>
 
-                        <input type="radio" id="slurm" value="slurm" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
-                        <label for="slurm">Slurm</label>
-                        <input type="radio" id="htcondor" value="htcondor" name="workload_manager" onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
-                        <label for="htcondor">HTCondor</label>
-                        <input type="radio" id="none" value="none" name="workload_manager" checked onchange="toggleConfigurationPanel()" onload="toggleConfigurationPanel()">
-                        <label for="none">None</label>
-                    </div>
-                
-                    <div class="conf" id="slurmConfPanel" style="display: none;">
-                        <h4>Slurm configuration settings</h4>
+        <div class="block">
+            <h3 style="padding: -100px;">Generation of code</h3>
+            <div><h4>Command-line generation</h4></div>
 
-                        <label for="Slurm_account_name">Account name: </label>
-                        <input type="text" name="Slurm_account_name" id="Slurm_account_name">
-                        <label for="Spart">Serial partition: </label>
-                        <input type="text" name="Slurm_serial_part" id="Slurm_serial_part">
-                        <label for="Part">Parallel partition: </label>
-                        <input type="text" name="Slurm_parallel_part" id="Slurm_parallel_part">
-                        <br>
-                        <br>
-                        <label for="Nproces">Number of processes: </label>
-                        <input type="number" name="Slurm_Nprocess" id="Slurm_Nprocess" style="width: 40px;" min=1 value=1>
-                        <label for="Nthread">Number of threads: </label>
-                        <input type="number" name="Slurm_Nthreads" id="Slurm_Nthreads" style="width: 40px;" min=1 value=1>
-                        <label for="Time">Wall-time(hours): </label>
-                        <input type="number" name="Slurm_time" id="Time" style="width: 40px;" min=1 value=1>
-                        <label for="Mproces">Memory per process: </label>
-                        <input type="number" name="Slurm_Mprocess" id="Mprocess" style="width: 40px;" min=1 value=1>
-                    </div>
-                
-                    <div class="conf" id="htcondorConfPanel" style="display: none;">
-                        <h4>HTCondor configuration settings</h4>
-                        Work in progress!
-                    </div>
-
-                    <div class="conf" id="noneConfPanel">
-                        <h4>Base configuration settings</h4>
-                        
-                        <label for="Nproces">Number of processes: </label>
-                        <input type="number" name="Nprocess" id="Nprocess" style="width: 40px;" min=1 value=1>
-                        <br>
-                        <br>
-                        <label for="Part">Threads</label>
-                        <input type="number" name="threads" id="threads" style="width: 40px;" min=1 value=1>
-                    </div>
-
-                </div>
-                <div class="icon" style="text-align: right;">
-                    <img src="../static/hpc-cluster.png" alt="HPC-cluster" style="width: 20%;">
-                </div>
+            <p>Command-line example using the diamond suite.</p>
+            <div class="code-cell">
+./main.sh -i /home/user/assembly/slow_fast_degs_hs.fasta -b /home/user/BANCHE_OMOLOGY/diamond -T blastx -t 48 -D -d /home/user/BANCHE_OMOLOGY/NR/nr.dmnd -p 50
             </div>
-            <div class="description">  
-                <p style="font-weight: bold;text-align: center;">Please note that it is absolutely mandatory to use the running machine absolute paths.</p>
+            <p>In this case, we will divide the computation (and the input file) into 50 parts that will be processed simultaneously (with 48 threads each). In the end, the outputs of the 50 jobs will be combined into a single file.</p>
+            <p>Another other example using the BLAST</p>
+            <div class="code-cell">
+./main.sh -i ../project/assembly/slow_fast_degs_hs.fasta -b /home/blast/blastx -T blastx -t 48 -d /home/user/DB/nr -p 100
             </div>
+            In this case we have split the computation into 100 jobs using the BLAST suite.
+        </div>
+        <div class="block">
+            <h3 style="padding: -100px;">Annotation pipeline example</h3>
+            <div><h4>An example that shows how to create an annotation script</h4></div>
 
-            <div class="block" style="display: grid; grid-template-columns: auto 1fr; gap: 20px;">
-                <div>
-                    <div style="display: flex;">
-                        <h3>Alignment software settings</h3>
-                        <button class="help_settings" id="help_alignment" type="button">
-                            <p style="margin-top: -1px; font-size: large;">?</p>
-                        </button>
-                    </div>
-                    <div class="SAT">
-                        <h4>Select the annotation tool</h4>
-                        <input type="radio" id="blast" value="blast" name="annotation_software">
-                        <label for="blast">Blast</label>
-                        <input type="radio" id="diamond" value="diamond" name="annotation_software" checked>
-                        <label for="diamond">Diamond</label>
-                        <br>
-                        <br>
-                        <br>
-                        <label for="tool-select">Choose a tool:</label>
-
-                        <select name="tool" id="tool">
-                            <option value="blastp">Blastp</option>
-                            <option value="blastx">Blastx</option>
-                        </select>
-                        <br>
-                        <br>
-                        <label for="Part">Database absolute path</label><br>
-                        <input class="long_input" type="text" name="DB_path" id="DB_path" size="110">
-                        <br>
-                        <br>
-                        <label for="Part">Input file absolute path</label><br>
-                        <input class="long_input" type="text" name="IF_path" id="IF_path" size="110">
-                        <br>
-                        <br>
-                        <label for="Part">Binary absolute path</label><br>
-                        <input class="long_input" type="text" name="BI_path" id="BI_path" size="110">
-                        <br>
-                        <br>
-                        <label for="Part">Outformat (please use the double quotes)</label><br>
-                        <input class="long_input" type="text" name="outformat" id="outformat" size="110" value="&#34;6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore&#34;">
-                        <br>
-                        <br>
-                        <label for="Part">Additional options</label> 
-                        <button id="help_add_options" type="button" style="height: 18px;"> 
-                            <p style="margin-top: -1.5px;">?</p>
-                        </button>
-                        
-                        
-                        <br>
-                        <input class="long_input" type="text" name="add_options" id="add_options" value="" size="110">
-
-                    </div>
-                </div>
-                <div class="icon" style="text-align: right;">
-                    <img src="../static/annotation.png" alt="Annotation" style="max-width: 65%;">
-                </div>
-                
+            <p>This is an example of a pipeline script that exec HPC-T-Annotator with BLASTP and BLASTX against multiple protein database.</p>
+            <div class="code-cell">
             </div>
-            <div class="buttons">
-                <button id="reset" type="reset"> 
-                    Reset the fields
-                </button>
-
-                <button id="sub_B" type="submit"> 
-                    Generate
-                </button>
-            </div>
-        </form>
-
+            Running this script we have six annotation jobs that will be executed simultaneously.
+        </div>
     </div>
 </body>
 </html>

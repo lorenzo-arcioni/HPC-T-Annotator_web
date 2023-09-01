@@ -82,7 +82,7 @@ nav ul li a:hover {
 
 .block > div {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .buttons {
@@ -165,6 +165,39 @@ nav ul li a:hover {
     margin-left: 10px;
 }
 
+.github-button {
+    background-color: #333; /* Colore di sfondo */
+    color: #fff; /* Colore del testo */
+    padding: 15px 30px; /* Spaziatura interna */
+    border: none; /* Nessun bordo */
+    border-radius: 5px; /* Angoli arrotondati */
+    text-align: center; /* Allineamento testo al centro */
+    text-decoration: none; /* Nessuna sottolineatura */
+    display: inline-block; /* Per mantenere le dimensioni desiderate */
+    font-size: 16px; /* Dimensione del testo */
+    margin: 10px; /* Margine esterno */
+    cursor: pointer; /* Cambio del cursore al passaggio del mouse */
+    transition: background-color 0.3s ease; /* Transizione colore di sfondo */
+}
+
+/* Stile quando il cursore è sopra il bottone */
+.github-button:hover {
+    background-color: #555; /* Cambia il colore di sfondo al passaggio del mouse */
+}
+
+/* Stile per la cella di codice */
+.code-cell {
+    background-color: #f4f4f4; /* Colore di sfondo */
+    border: 1px solid #ddd; /* Bordo con sottile linea grigia */
+    padding: 10px; /* Spaziatura interna */
+    border-radius: 5px; /* Angoli arrotondati */
+    font-family: "Courier New", monospace; /* Tipo di carattere monospace per il codice */
+    font-size: 14px; /* Dimensione del testo */
+    line-height: 1.4; /* Altezza della linea */
+    white-space: nowrap; /* Evita il wrapping del testo */
+    overflow-x: auto; /* Barra di scorrimento orizzontale se necessario */
+    max-width: 1300px; /* Larghezza massima della cella di codice */
+}
 @media screen and (max-width: 980px) {
     .settings {
         flex-direction: column;
