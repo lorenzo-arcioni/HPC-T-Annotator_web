@@ -221,6 +221,6 @@ def architecture():
 
 
 @app.route('/download.html')
-def architecture():
+def download():
     # Help page
     return render_template("download.html")
