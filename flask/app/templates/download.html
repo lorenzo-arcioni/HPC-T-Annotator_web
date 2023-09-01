@@ -63,13 +63,13 @@ wget https://github.com/lorenzo-arcioni/HPC-T-Annotator/archive/refs/heads/main.
 nr="hpc-t-annotator_NR"
 </div>
 <div class="code-cell">
-unzip main.zip -d $nr
+unzip HPC-T-Annotator-main.zip -d $nr
 </div>
 <div class="code-cell">
-rm main.zip
+rm HPC-T-Annotator-main.zip
 </div>
 <div class="code-cell">
-cd $nr
+cd $nr/HPC-T-Annotator-main
 </div>
 <div class="code-cell">
 ./main.sh -i /home/user/assembly/slow_fast_degs_hs.fasta -b /home/user/BANCHE_OMOLOGY/diamond -T blastx -t 48 -D -d /home/user/BANCHE_OMOLOGY/NR/nr.dmnd -p 50 
