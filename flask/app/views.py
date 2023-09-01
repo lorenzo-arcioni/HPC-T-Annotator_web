@@ -218,3 +218,9 @@ def start():
 def architecture():
     # Help page
     return render_template("architecture.html")
+
+
+@app.route('/download.html')
+def architecture():
+    # Help page
+    return render_template("download.html")

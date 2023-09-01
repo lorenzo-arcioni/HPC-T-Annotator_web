@@ -33,7 +33,7 @@
         <div class="description">
             <p>If you have experience in running and developing bash scripts, you can use HPC-T-Annotator even without the assistance of the web interface by downloading the software directly from GitHub using the link below.</p>
             <a class="github-button" href="https://github.com/lorenzo-arcioni/HPC-T-Annotator/archive/refs/heads/main.zip" target="_blank">Download from GitHub</a>
-            <p>After downloading and extracting the TAR archive, you can proceed as follows: perform the code generation phase, upload (if necessary) the generated TAR package to the HPC machine, and then start the computation.</p>
+            <p>After downloading and extracting the ZIP archive, you can proceed as follows: perform the code generation phase, upload (if necessary) the generated ZIP package to the HPC machine, and then start the computation.</p>
         </div>
 
         <div class="block">
@@ -55,10 +55,25 @@
             <h3 style="padding: -100px;">Annotation pipeline example</h3>
             <div><h4>An example that shows how to create an annotation script</h4></div>
 
-            <p>This is an example of a pipeline script that exec HPC-T-Annotator with BLASTP and BLASTX against multiple protein database.</p>
-            <div class="code-cell">
-            </div>
-            Running this script we have six annotation jobs that will be executed simultaneously.
+            <p>This is an example of a pipeline script that exec HPC-T-Annotator with BLASTP or BLASTX against protein database.</p>
+<div class="code-cell">
+wget https://github.com/lorenzo-arcioni/HPC-T-Annotator/archive/refs/heads/main.zip
+</div>
+<div class="code-cell">
+nr="hpc-t-annotator_NR"
+</div>
+<div class="code-cell">
+unzip main.zip -d $nr
+</div>
+<div class="code-cell">
+rm main.zip
+</div>
+<div class="code-cell">
+cd $nr
+</div>
+<div class="code-cell">
+./main.sh -i /home/user/assembly/slow_fast_degs_hs.fasta -b /home/user/BANCHE_OMOLOGY/diamond -T blastx -t 48 -D -d /home/user/BANCHE_OMOLOGY/NR/nr.dmnd -p 50 
+</div>
         </div>
     </div>
 </body>
