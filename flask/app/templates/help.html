@@ -124,6 +124,29 @@
 
         <p>Once generated, you can download the software package in TAR format.</p>
     </div>
+
+    <div class="block">
+        <h3>Extract the TAR archive and run</h3>
+        <div>
+            <p>After downloading the TAR archive (and, if you want, uploading the archive on HPC cluster) you have to unTAR the archive and then run the start 
+               script.
+            </p>
+        </div>
+        <div class="code-cell">
+            tar -xf hpc-t-annotator.tar -C /path/to/myfolder/hpc-t-annotator<br>
+            cd /path/to/myfolder/hpc-t-annotator
+        </div>
+        <p>And the, if you are on HPC cluster with Slurm workload manager</p>
+        <div class="code-cell">
+            sbatch start.sh
+        </div>
+        <p>Else, if you are on workload manager less architecture</p>
+        <div class="code-cell">
+            bash start.sh
+        </div>
+
+        <p>Once the entire computation process has ended (check the general.log file for the status), the final result will be in tmp/final_blast.tsv file.</p>
+    </div>
 </div>
 </body>
 </html>

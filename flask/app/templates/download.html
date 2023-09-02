@@ -57,21 +57,11 @@
 
             <p>This is an example of a pipeline script that exec HPC-T-Annotator with BLASTP or BLASTX against protein database.</p>
 <div class="code-cell">
-wget https://github.com/lorenzo-arcioni/HPC-T-Annotator/archive/refs/heads/main.zip
-</div>
-<div class="code-cell">
-nr="hpc-t-annotator_NR"
-</div>
-<div class="code-cell">
-unzip HPC-T-Annotator-main.zip -d $nr
-</div>
-<div class="code-cell">
-rm HPC-T-Annotator-main.zip
-</div>
-<div class="code-cell">
-cd $nr/HPC-T-Annotator-main
-</div>
-<div class="code-cell">
+wget https://github.com/lorenzo-arcioni/HPC-T-Annotator/archive/refs/heads/main.zip<br>
+nr="hpc-t-annotator_NR"<br><br>
+unzip HPC-T-Annotator-main.zip -d $nr<br>
+rm HPC-T-Annotator-main.zip<br><br>
+cd $nr/HPC-T-Annotator-main<br><br>
 ./main.sh -i /home/user/assembly/slow_fast_degs_hs.fasta -b /home/user/BANCHE_OMOLOGY/diamond -T blastx -t 48 -D -d /home/user/BANCHE_OMOLOGY/NR/nr.dmnd -p 50 
 </div>
         </div>
