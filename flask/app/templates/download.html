@@ -3,9 +3,9 @@
 <head> 
     <meta charset="utf-8"> 
     <title> HPC-T-Annotator </title>
-    <link rel="stylesheet" type="text/css" href="../static/styles.css">
-    <link rel="icon" type="image/x-icon" href="../static/logo.ico">
-    <script src="../static/scripts.js" defer></script>        
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <link rel="icon" type="image/x-icon" href="static/logo.ico">
+    <script src="static/scripts.js" defer></script>        
 </head>
 <body>
 
@@ -23,9 +23,9 @@
     <div class="container">
         <div class="title">
             <div class="best" style="display: flex; align-items: center;">
-                <img src="../static/logo.png" width="100" style="margin: auto;">
+                <img src="static/logo.png" width="100" style="margin: auto;">
                 <h1>HPC-T-Annotator</h1>
-                <img src="../static/logo.png" width="100" style="margin: auto;">
+                <img src="static/logo.png" width="100" style="margin: auto;">
             </div>
             <h2 id="subtitle">Interface-less execution</h2>
         </div>
@@ -47,7 +47,7 @@
             <p>In this case, we will divide the computation (and the input file) into 50 parts that will be processed simultaneously (with 48 threads each). In the end, the outputs of the 50 jobs will be combined into a single file.</p>
             <p>Another other example using the BLAST</p>
             <div class="code-cell">
-./main.sh -i ../project/assembly/slow_fast_degs_hs.fasta -b /home/blast/blastx -T blastx -t 48 -d /home/user/DB/nr -p 100
+./main.sh -i project/assembly/slow_fast_degs_hs.fasta -b /home/blast/blastx -T blastx -t 48 -d /home/user/DB/nr -p 100
             </div>
             In this case we have split the computation into 100 jobs using the BLAST suite.
         </div>

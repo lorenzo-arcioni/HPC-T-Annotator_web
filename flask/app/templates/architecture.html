@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>HPC-T-Annotator - Architecture</title>
-    <link rel="stylesheet" type="text/css" href="../static/styles.css">
-    <link rel="icon" type="image/x-icon" href="../static/logo.ico">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <link rel="icon" type="image/x-icon" href="static/logo.ico">
 </head>
 <body>
 
@@ -22,9 +22,9 @@
 <div class="container">
     <div class="title">
         <div class="best" style="display: flex; align-items: center;">
-            <img src="../static/logo.png" width="100" style="margin: auto;">
+            <img src="static/logo.png" width="100" style="margin: auto;">
             <h1>HPC-T-Annotator</h1>
-            <img src="../static/logo.png" width="100" style="margin: auto;">
+            <img src="static/logo.png" width="100" style="margin: auto;">
           </div>
         <h2>Architecture design</h2>
     </div>
@@ -35,7 +35,7 @@
            with traditional alignment software, contains the sequences of interest. In order to expedite 
            the alignment process, HPC-T-Annotator employs a distributed approach where the sequences within the input file are distributed
            and annotated separately and independently.</p>
-        <img src="../static/function_details.png" alt="Pipeline" width="1200">
+        <img src="static/function_details.png" alt="Pipeline" width="1200">
         <p>This parallelization strategy enables us to achieve significant reductions in 
            alignment time. By leveraging the power of distributed computing, HPC-T-Annotator harnesses the computational resources of an 
            HPC cluster, allowing multiple alignment instances to be executed simultaneously. Each alignment instance compares a subset of 
@@ -52,7 +52,7 @@
     <div class="block">
         <h3 style="text-align: center;">Complete workflow diagram of parallel processing of HPC-T-Annotator</h3>
         <div class="figure">
-            <img src="../static/logic-diagram2.png" 
+            <img src="static/logic-diagram2.png" 
                  alt="Workflow diagram of parallel processing of HPC-T-Annotator" 
                  width="1100"
                  style="margin: auto auto">
