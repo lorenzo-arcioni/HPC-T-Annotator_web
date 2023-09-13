@@ -95,7 +95,7 @@ function validateForm(){
     // Check if the outformat has the correct format with double quotes
     var add_options = document.getElementById("add_options");
 
-    if (add_options.value.match('.*-num_threads.*') || add_options.value.match('.*-p.*') || add_options.value.match('.*-o.*') || add_options.value.match('.*-out.*')){
+    if (add_options.value.match('.*-num_threads.*') || add_options.value.match('.*-p .*') || add_options.value.match('.*-o .*') || add_options.value.match('.*-out .*')){
         isValid = false;
         add_options.style.backgroundColor = "#BDBDBD";
     } else {
