@@ -59,38 +59,38 @@
                         <h4>Slurm configuration settings</h4>
 
                         <label for="Slurm_account_name"><b>Account name:</b> </label>
-                        <input type="text" name="Slurm_account_name" id="Slurm_account_name">
+                        <input type="text" name="Slurm_account_name" id="Slurm_account_name" placeholder="account_name">
                         Specify the name of the account for job submission.
                         <br>
                         <br>
                         <label for="Spart"><b>Serial partition: </b></label>
-                        <input type="text" name="Slurm_serial_part" id="Slurm_serial_part">
+                        <input type="text" name="Slurm_serial_part" id="Slurm_serial_part" placeholder="g100_all_serial">
                         Partition with an hour of minimum wall-time execution and at least 5GB of RAM.
                         <br>
                         <br>
                         <label for="Part"><b>Parallel partition:</b> </label>
-                        <input type="text" name="Slurm_parallel_part" id="Slurm_parallel_part">
+                        <input type="text" name="Slurm_parallel_part" id="Slurm_parallel_part" placeholder="g100_usr_prod">
                         Provide the name of the parallel partition for multi-threaded jobs.
                         <br>
                         <br>
                         <label for="Nproces"><b>Number of processes:</b> </label>
                         <input type="number" name="Slurm_Nprocess" id="Slurm_Nprocess" style="width: 40px;" min=1 value=1>
-                        Set the desired number of processes. Must not excedeed the number of sequences.
+                        Set the desired number of processes. Must not excedeed the number of sequences (A range of 10-300 is recommended).
                         <br>
                         <br>
                         <label for="Nthread"><b>Number of threads: </b></label>
                         <input type="number" name="Slurm_Nthreads" id="Slurm_Nthreads" style="width: 40px;" min=1 value=1>
-                        Define the number of threads per process.
+                        Define the number of threads per process (A range of 10-100 is recommended).
                         <br>
                         <br>
                         <label for="Time"><b>Wall-time (hours):</b></label>
                         <input type="number" name="Slurm_time" id="Time" style="width: 40px;" min=1 value=1>
-                        <U>Must be less then your parallel partition wall-time.</U>
+                        <U>Must be less than or equal to your parallel partition wall-time.</U>
                         <br>
                         <br>
                         <label for="Mproces"><b>Memory per process (GB):</b></label>
                         <input type="number" name="Slurm_Mprocess" id="Mprocess" style="width: 40px;" min=1 value=1>
-                        Enter the memory requirement per process.
+                        Enter the memory requirement per process (Must be less than or equal to your node RAM limit).
                     </div>
 
                     <div class="conf" id="noneConfPanel">
@@ -147,15 +147,15 @@
                             <p style="margin-top: -1.5px;">?</p>
                         </button>
                         <br>
-                        <input class="long_input" type="text" name="DB_path" id="DB_path" size="110">
+                        <input class="long_input" type="text" name="DB_path" id="DB_path" size="110" placeholder="/path/to/database">
                         <br>
                         <br>
                         <label for="Part">Input file absolute path</label><br>
-                        <input class="long_input" type="text" name="IF_path" id="IF_path" size="110">
+                        <input class="long_input" type="text" name="IF_path" id="IF_path" size="110" placeholder="/path/to/input_file">
                         <br>
                         <br>
                         <label for="Part">Binary absolute path</label><br>
-                        <input class="long_input" type="text" name="BI_path" id="BI_path" size="110">
+                        <input class="long_input" type="text" name="BI_path" id="BI_path" size="110" placeholder="/path/to/binary">
                         <br>
                         <br>
                         <label for="Part">Outformat (please use the double quotes)</label>
