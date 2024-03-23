@@ -112,6 +112,7 @@ def start():
                                                                     wlm_header.replace("\n", "\\n"),
                                                                     data_dic['add_options'],
                                                                     data_dic['add_options'],
+                                                                    data_dic['job_name']
                                                                    ))
             read.close()
     
