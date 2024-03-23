@@ -101,7 +101,7 @@ def main():
 	elif wlm == "htcondor":
 		pass
 	else:
-		sp.call("bash ./control_script.sh", shell=True)
+		sp.call("bash ./control_script.sh 2>control.err", shell=True)
 	
 if __name__ == '__main__':
     sys.exit(main())

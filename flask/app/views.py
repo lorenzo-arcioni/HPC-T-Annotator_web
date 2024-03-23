@@ -5,6 +5,7 @@ import string
 import os
 import subprocess as sp
 import shutil as sh
+import time
 
 @app.route("/index.html", methods=['GET', 'POST'])
 @app.route("/", methods=['GET', 'POST'])
@@ -208,15 +209,18 @@ def start():
         sp.run("chmod +x start.sh && chmod +x read.py && chmod +x control_script.sh", shell=True)
         sp.run("cp ../time_calculator.py .", shell=True)
         sp.run("cp ../splitter.py .", shell=True)
-        sp.run("tar -cf hpc-t-annotator.tar read.py start.sh control_script.sh time_calculator.py splitter.py", shell=True)
 
-        tar = open("./hpc-t-annotator.tar", "r")
+        tar_name = "hpc-t-annotator_" +  time.strftime("%Y.%m.%d-%H.%M.%S") + ".tar"
+
+        sp.run(f"tar -cf {tar_name} read.py start.sh control_script.sh time_calculator.py splitter.py", shell=True)
+
+        tar = open(f"./{tar_name}", "r")
         tar.seek(0)
 
         os.chdir("../")
         sh.rmtree(tmp_dir)
 
-        return send_file(tar, as_attachment=True, attachment_filename='hpc-t-annotator.tar', mimetype='text/plain')
+        return send_file(tar, as_attachment=True, attachment_filename=tar_name, mimetype='text/plain')
     
     return render_template("start.html")
 
