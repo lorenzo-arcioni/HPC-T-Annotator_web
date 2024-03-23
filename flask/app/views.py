@@ -44,7 +44,7 @@ def start():
 
             if data_dic['wlm'] == 'slurm':
 
-                start.write("#SBATCH --job-name=PA_proc_start" + '\n')
+                start.write("#SBATCH --job-name=Start-" + data_dic['job_name'] + '\n')
                 start.write("#SBATCH --output=general.out" + '\n')
                 start.write("#SBATCH --error=general.err" + '\n')
                 start.write("#SBATCH --nodes=1" + '\n')
@@ -124,7 +124,7 @@ def start():
 
             if data_dic['wlm'] == 'slurm':
                 
-                control.write("#SBATCH --job-name=PA_proc-control" + '\n')
+                control.write("#SBATCH --job-name=Control-" + data_dic['job_name'] + '\n')
                 control.write("#SBATCH --output=control.out" + '\n')
                 control.write("#SBATCH --error=control.err" + '\n')
                 control.write("#SBATCH --nodes=1" + '\n')
@@ -178,6 +178,8 @@ def start():
         data_dic['wlm'] = request.form.get('workload_manager').lower()
         
         if data_dic['wlm'] == 'slurm':
+
+            data_dic['job_name'] = request.form.get('Slurm_job_name')
             data_dic['account_name'] = request.form.get('Slurm_account_name')
             data_dic['serial_part'] = request.form.get('Slurm_serial_part')
             data_dic['parallel_part'] = request.form.get('Slurm_parallel_part')
