@@ -137,12 +137,12 @@ def start():
                 with open("../bases/controlscript_base.txt", "r") as f:
                     # Read the contents of controlscript_base.txt and format it with "sbatch"
                     base = f.read().format("#If my running time > 1 hours\n"+
-	                                       "    if [ $(( end_time - start_time )) -gt 3600 ]\n"+
-                                           "    then\n"+
-                                           "    #Launch my clone\n"+
-                                           "        sbatch ./control_script.sh\n"+
-                                           "        exit 0\n"+
-                                           "    fi\n\n")
+	                                       "        if [ $(( end_time - start_time )) -gt 3600 ]\n"+
+                                           "        then\n"+
+                                           "        #Launch my clone\n"+
+                                           "            sbatch ./control_script.sh\n"+
+                                           "            exit 0\n"+
+                                           "        fi\n\n")
                     # Write the formatted contents to control_script.sh
                     control.write(base)
                     f.close()
