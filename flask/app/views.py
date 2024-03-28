@@ -233,7 +233,7 @@ def architecture():
     return render_template("architecture.html")
 
 
-@app.route('/download.html')
-def download():
+@app.route('/tool.html')
+def tool():
     # Help page
-    return render_template("download.html")
+    return render_template("tool.html")
