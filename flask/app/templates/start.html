@@ -13,7 +13,7 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="start.html">Start</a></li>
-            <li><a href="download.html">Download</a></li>
+            <li><a href="tool.html">Tool</a></li>
             <li><a href="architecture.html">Architecture</a></li>
             <li><a href="help.html">Help</a></li>
             <li><a href="contacts.html">Contacts</a></li>
@@ -100,13 +100,18 @@
 
                     <div class="conf" id="noneConfPanel">
                         <h4>Base configuration settings</h4>
-                        
-                        <label for="Nproces">Number of processes: </label>
+
+                        <label for="job_name"><b>Job name:</b> </label>
+                        <input type="text" name="job_name" id="job_name" placeholder="job_name">
+                        Specify the name of the job for job submission.
+                        <br>
+                        <br>                        
+                        <label for="Nproces"><b>Number of processes:</b></label>
                         <input type="number" name="Nprocess" id="Nprocess" style="width: 40px;" min=1 value=1>
                         Set the desired number of processes. Must not excedeed the number of sequences.
                         <br>
                         <br>
-                        <label for="Part">Threads</label>
+                        <label for="Part"><b>Threads</b></label>
                         <input type="number" name="threads" id="threads" style="width: 40px;" min=1 value=1>
                         Define the number of threads per process.
                     </div>
@@ -123,7 +128,7 @@
             </div>
 
             <div class="block" style="display: grid; grid-template-columns: auto 1fr; gap: 20px;">
-                <div>
+                <div style="width: 240%;">
                     <div style="display: flex;">
                         <h3>Alignment software settings</h3>
                         <button class="help_settings" id="help_alignment" type="button">
@@ -152,15 +157,15 @@
                             <p style="margin-top: -1.5px;">?</p>
                         </button>
                         <br>
-                        <input class="long_input" type="text" name="DB_path" id="DB_path" size="110" placeholder="/path/to/database">
+                        <input class="long_input" type="text" name="DB_path" id="DB_path" placeholder="/path/to/database">
                         <br>
                         <br>
                         <label for="Part">Input file absolute path</label><br>
-                        <input class="long_input" type="text" name="IF_path" id="IF_path" size="110" placeholder="/path/to/input_file">
+                        <input class="long_input" type="text" name="IF_path" id="IF_path" placeholder="/path/to/input_file">
                         <br>
                         <br>
                         <label for="Part">Binary absolute path</label><br>
-                        <input class="long_input" type="text" name="BI_path" id="BI_path" size="110" placeholder="/path/to/binary">
+                        <input class="long_input" type="text" name="BI_path" id="BI_path" placeholder="/path/to/binary">
                         <br>
                         <br>
                         <label for="Part">Outformat (please use the double quotes)</label>
@@ -168,7 +173,7 @@
                             <p style="margin-top: -1.5px;">?</p>
                         </button>
                         <br>
-                        <input class="long_input" type="text" name="outformat" id="outformat" size="110" value="&#34;6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore&#34;">
+                        <input class="long_input" type="text" name="outformat" id="outformat" value="&#34;6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore&#34;">
                         <br>
                         <br>
                         <label for="Part">Additional options</label> 
@@ -176,7 +181,7 @@
                             <p style="margin-top: -1.5px;">?</p>
                         </button>
                         <br>
-                        <input class="long_input" type="text" name="add_options" id="add_options" value="" size="110">
+                        <input class="long_input" type="text" name="add_options" id="add_options" value="">
 
                     </div>
                 </div>

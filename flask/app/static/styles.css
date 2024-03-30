@@ -198,6 +198,11 @@ nav ul li a:hover {
     overflow-x: auto; /* Barra di scorrimento orizzontale se necessario */
     max-width: 1300px; /* Larghezza massima della cella di codice */
 }
+
+.long_input {
+    width: 100%;
+}
+
 @media screen and (max-width: 980px) {
     .settings {
         flex-direction: column;
@@ -205,10 +210,6 @@ nav ul li a:hover {
     }
 
     .workload, .conf, .annotation {
-        width: 100%;
-    }
-
-    .long_input {
         width: 100%;
     }
 

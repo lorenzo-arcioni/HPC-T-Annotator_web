@@ -192,6 +192,7 @@ def start():
         elif data_dic['wlm'] == 'htcondor':
             pass
         else:
+            data_dic['job_name'] = request.form.get('job_name')
             data_dic['wlm'] = 'None'
             data_dic['processes'] = request.form.get('Nprocess')
             data_dic['threads'] = request.form.get('threads')
@@ -213,7 +214,7 @@ def start():
         sp.run("cp ../time_calculator.py .", shell=True)
         sp.run("cp ../splitter.py .", shell=True)
 
-        tar_name = "hpc-t-annotator_" +  time.strftime("%Y.%m.%d-%H.%M.%S") + ".tar"
+        tar_name = "hpc-t-annotator_" + data_dic['job_name'] + "-" + time.strftime("%Y.%m.%d-%H.%M.%S") + ".tar"
 
         sp.run(f"tar -cf {tar_name} read.py start.sh control_script.sh time_calculator.py splitter.py", shell=True)
 
