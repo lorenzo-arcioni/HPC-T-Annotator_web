@@ -124,7 +124,9 @@ def start():
             control.write("#!/bin/bash\n\n")
 
             if data_dic['outdir'] != "":
-                out_cmd = "mv ./tmp/final_blast.tsv " + data_dic['outdir'] + "\n"
+                out_cmd = "# Moving output files\n" + \
+                          "mv ./tmp/final_blast.tsv " + data_dic['outdir'] + '\n' + \
+                          "echo \"Output file: " + data_dic['outdir'] + "final_blast.tsv\" >> ./general.log"
             else:
                 out_cmd = ""
 
