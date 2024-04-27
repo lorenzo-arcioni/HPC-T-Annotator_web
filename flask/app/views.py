@@ -123,6 +123,11 @@ def start():
             # Write the shebang line
             control.write("#!/bin/bash\n\n")
 
+            if data_dic['outdir'] != "":
+                out_cmd = "mv ./tmp/final_blast.tsv " + data_dic['outdir'] + "\n"
+            else:
+                out_cmd = ""
+
             if data_dic['wlm'] == 'slurm':
                 
                 control.write("#SBATCH --job-name=Control-" + data_dic['job_name'] + '\n')
@@ -144,7 +149,7 @@ def start():
                                            "        #Launch my clone\n"+
                                            "            sbatch ./control_script.sh\n"+
                                            "            exit 0\n"+
-                                           "        fi\n\n")
+                                           "        fi\n\n", out_cmd)
                     # Write the formatted contents to control_script.sh
                     control.write(base)
                     f.close()
@@ -156,7 +161,7 @@ def start():
                 # Open the controlscript_base.txt file in read mode
                 with open("../bases/controlscript_base.txt", "r") as f:
                     # Read the contents of controlscript_base.txt and format it with "bash"
-                    base = f.read().format("")
+                    base = f.read().format("", out_cmd)
                     # Write the formatted contents to control_script.sh
                     control.write(base)
                     f.close()
@@ -201,6 +206,7 @@ def start():
         data_dic['tool'] = request.form.get('tool')
         data_dic['database'] = request.form.get('DB_path')
         data_dic['inputfile'] = request.form.get('IF_path')
+        data_dic['outdir'] = request.form.get('OF_path')
         data_dic['outformat'] = request.form.get('outformat')
         data_dic['binary'] = request.form.get('BI_path')
         data_dic['add_options'] = request.form.get('add_options')
