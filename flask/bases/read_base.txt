@@ -89,7 +89,7 @@ def main():
 		elif wlm == "htcondor":
 			pass
 		else:
-			sp.call("bash ./script.sh 2> general.err &", shell=True)
+			sp.call("bash ./script.sh 1> general.out 2> general.err &", shell=True)
 
 		os.chdir("../")
 	os.chdir("../")

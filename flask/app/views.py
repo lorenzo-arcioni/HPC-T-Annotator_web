@@ -53,26 +53,16 @@ def start():
                 start.write("#SBATCH --mem=5GB" + '\n')
                 start.write("#SBATCH --time=01:00:00" + '\n')
                 start.write("#SBATCH --partition=" + data_dic['serial_part'] + '\n\n')
-                start.write(open("../bases/start_base.txt").read().format(data_dic['inputfile'], 
-                                                                        data_dic['processes'], 
-                                                                        data_dic['threads'], 
-                                                                        data_dic['outformat'], 
-                                                                        data_dic['diamond'], 
-                                                                        data_dic['tool'], 
-                                                                        data_dic['binary'], 
-                                                                        data_dic['database']))
-            elif data_dic['wlm'] == 'htcondor':
-                pass
 
-            elif data_dic['wlm'] == 'None':
-                start.write(open("../bases/start_base.txt").read().format(data_dic['inputfile'], 
-                                                                        data_dic['processes'], 
-                                                                        data_dic['threads'], 
-                                                                        data_dic['outformat'], 
-                                                                        data_dic['diamond'], 
-                                                                        data_dic['tool'], 
-                                                                        data_dic['binary'], 
-                                                                        data_dic['database']))
+            # Open the start_base.txt file in read mode and write it in the start.sh file
+            start.write(open("../bases/start_base.txt").read().format(data_dic['inputfile'], 
+                                                                    data_dic['processes'], 
+                                                                    data_dic['threads'], 
+                                                                    data_dic['outformat'], 
+                                                                    data_dic['diamond'], 
+                                                                    data_dic['tool'], 
+                                                                    data_dic['binary'], 
+                                                                    data_dic['database']))
             start.close()
 
     def fill_readbase(data_dic):
