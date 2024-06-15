@@ -116,7 +116,7 @@ def start():
             if data_dic['outdir'] != "":
                 out_cmd = "# Moving output files\n" + \
                           "mv ./tmp/final_blast.tsv " + data_dic['outdir'] + '\n' + \
-                          "echo \"Output file: " + data_dic['outdir'] + "/" if data_dic['outdir'][-1] != "/" else "" + "final_blast.tsv\" >> ./general.log"
+                          "echo \"Output file: " + data_dic['outdir'] + ("/" if data_dic['outdir'][-1] != "/" else "") + "final_blast.tsv\" >> ./general.log"
             else:
                 out_cmd = ""
 
