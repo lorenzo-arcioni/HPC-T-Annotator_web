@@ -232,6 +232,18 @@ def architecture():
     return render_template("architecture.html")
 
 
+@app.route('/interface_guide.html')
+def interface_guide():
+    # Help interface guide page
+    return render_template("interface_guide.html")
+
+
+@app.route('/example.html')
+def example():
+    # Help example page
+    return render_template("example.html")
+
+
 @app.route('/tool.html')
 def tool():
     # Help page
