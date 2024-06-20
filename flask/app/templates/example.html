@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>HPC-T-Annotator Interface Guide</title>
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <link rel="icon" type="image/x-icon" href="static/logo.ico">
+    <script src="static/scripts.js" defer></script>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="start.html">Start</a></li>
+            <li><a href="tool.html">Tool</a></li>
+            <li><a href="architecture.html">Architecture</a></li>
+            <li>
+                <a href="help.html">Help</a>
+                <ul class="dropdown-content">
+                    <li><a href="interface_guide.html">Interface guide</a></li>
+                    <li><a href="example.html">Step-by-step example</a></li>
+                </ul>
+            </li>
+            <li><a href="contacts.html">Contacts</a></li>
+        </ul>
+    </nav>
+
+<div class="container">
+    <div class="title">
+        <div class="best" style="display: flex; align-items: center;">
+            <img src="static/logo.png" width="100" style="margin: auto;">
+            <h1>HPC-T-Annotator</h1>
+            <img src="static/logo.png" width="100" style="margin: auto;">
+        </div>
+        <h2 id="subtitle">Step-by-step example</h2>
+    </div>
+    <div class="block">
+        <h3>A simple usecase</h3>
+
+        <div>
+            <p>Assume you have to run the BLASTX software on a transcriptome file <i>input.fa</i> against the <i>NR</i> database.</p> 
+            <p>Let</p>
+            <ul>
+                <li><i>/home/user/assembly/input.fa</i> be the transcriptome file's absolute path and</li>
+                <li><i>/home/user/DATABASES/NR</i> be the database's absolute path.</li>
+            </ul>
+            <p>Suppose also that you have an HPC cluster, with the SLURM workload manager, at your disposal. Both the transcriptome file and the database (and the executable binary as well) are already available on the cluster. 
+            You can run HPC-T-Annotator on your cluster by generating all the necessary files through our interface, filling out the form as follows.</p>
+            
+            <img src="static/example_1.png" alt="HPC-T-Annotator example" style="width: 100%;">
+            <img src="static/example_2.png" alt="HPC-T-Annotator example" style="width: 100%;">
+        
+            <p>The images above show the filled HPC-T-Annotator interface. In this context, we have assumed that:</p>
+            <ul>
+                <li><b>Job name:</b> is "my_test_job".</li>
+                <li><b>Account name:</b> is "job_account".</li> 
+                <li><b>Serial partition:</b> is "g100_all_serial".</li>
+                <li><b>Parallel partition:</b> is "g100_usr_prod".</li>
+                <li><b>Number of Processes:</b> is 10.</li>
+                <li><b>Number of Threads:</b> is 48.</li>
+                <li><b>Wall time (hours):</b> is 1.</li>
+                <li><b>Memory per process (GB):</b> is 15.</li>
+            </ul>
+        
+            <p>and the following software settings:</p>
+            <ul>
+                <li><b>Alignment Software:</b> is Diamond.</li>
+                <li><b>Tool:</b> is BLASTX.</li>
+                <li><b>Database:</b> is <i>/home/user/DATABASES/NR</i>.</li>
+                <li><b>Input file:</b> is <i>/home/user/assembly/input.fa</i>.</li>
+                <li><b>Outdir:</b> is <i>/home/user/assembly</i>.</li>
+                <li><b>Binary:</b> is <i>/home/user/bin/diamond</i>.</li>
+                <li><b>Outformat:</b> is <i>"6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore"</i>.</li>
+                <li><b>Additional options:</b> are <i>-k 5 --ultra-sensitive</i>.</li>
+            </ul>
+        
+            <p>Now, all we have to do is click on the "Generate" button and the interface automatically generates the software package in TAR format. 
+            After that, you can upload the package to your HPC cluster using the <b>scp</b> Unix command as follows:</p>
+        
+            <br>
+        
+            <div class="code-cell">
+                scp hpc-t-annotator.tar user@<i>cluster_domain</i>:<i>path</i>/hpc-t-annotator.tar
+            </div>
+        
+            <br>
+        
+            <p>Where <i>cluster_domain</i> is the domain name of the HPC cluster, <i>path</i> is the path where the software package is uploaded, and <i>user</i> is the username of your account on the HPC cluster.</p>
+        
+            <br>
+        
+            <p>Now, you have to extract the software package using the <b>tar</b> Unix command as follows:</p>
+        
+            <br>
+        
+            <div class="code-cell">
+                tar -xf hpc-t-annotator.tar && rm hpc-t-annotator.tar
+            </div>
+        
+            <br>
+        
+            <p>After that, you can run the <b>start.sh</b> script on the HPC cluster using the following command:</p>
+        
+            <br>
+        
+            <div class="code-cell">
+                sbatch start.sh
+            </div>
+        
+            <br>
+        
+            <p>After the computation process has ended (check the general.log file for the status), the final result will be in the <b>/home/user/assembly/final_blast.tsv</b> file.</p>
+        </div>
+
+    </div>
+</body>
+</html>
