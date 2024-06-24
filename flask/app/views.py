@@ -248,3 +248,9 @@ def example():
 def tool():
     # Help page
     return render_template("tool.html")
+
+
+@app.route('/notebooks.html')
+def notebooks():
+    # Help page
+    return render_template("notebooks.html")
