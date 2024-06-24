@@ -198,7 +198,7 @@ def start():
         data_dic['tool'] = request.form.get('tool')
         data_dic['database'] = request.form.get('DB_path')
         data_dic['inputfile'] = request.form.get('IF_path')
-        data_dic['outdir'] = request.form.get('OF_path')
+        data_dic['outdir'] = request.form.get('OF_path') if request.form.get('OF_path').startswith('/') else ""
         data_dic['outformat'] = request.form.get('outformat')
         data_dic['binary'] = request.form.get('BI_path')
         data_dic['add_options'] = request.form.get('add_options')

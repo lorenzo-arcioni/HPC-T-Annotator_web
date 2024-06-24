@@ -62,7 +62,7 @@ function validateForm(){
     for (var i = 0; i < inputs.length; i++) {
         var input = inputs[i];
 
-        if (input.offsetParent !== null && input.value.trim() === "" && input.id !== "add_options"){
+        if (input.offsetParent !== null && input.value.trim() === "" && input.id !== "add_options" && input.id !== "OF_path") {
             isValid = false;
             input.style.backgroundColor = "#BDBDBD";
         }
