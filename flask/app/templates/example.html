@@ -16,7 +16,7 @@
             <li><a href="tool.html">Tool</a></li>
             <li><a href="architecture.html">Architecture</a></li>
             <li>
-                <a href="help.html">Help</a>
+                <!-- <a href="help.html">Help</a> --><a>Help</a>
                 <ul class="dropdown-content">
                     <li><a href="interface_guide.html">Interface guide</a></li>
                     <li><a href="example.html">Step-by-step example</a></li>
@@ -33,11 +33,13 @@
             <h1>HPC-T-Annotator</h1>
             <img src="static/logo.png" width="100" style="margin: auto;">
         </div>
-        <h2 id="subtitle">Step-by-step example</h2>
+        <h2 id="subtitle">Step-by-step example of a typical usecase</h2>
+        <p>Immagine that you want to run the BLASTX software on a transcriptome file <i>input.fa</i> against the <i>NR</i> database. 
+            You have an HPC cluster at your disposal. And after the alignment is done, you want to interpret the results
+            showing some meaningful information about your transcriptome.</p>
     </div>
     <div class="block">
-        <h3>A simple usecase</h3>
-
+        <h3>Step 1: Configure the Workload Manager Settings</h3>
         <div>
             <p>Assume you have to run the BLASTX software on a transcriptome file <i>input.fa</i> against the <i>NR</i> database.</p> 
             <p>Let</p>
@@ -48,8 +50,11 @@
             <p>Suppose also that you have an HPC cluster, with the SLURM workload manager, at your disposal. Both the transcriptome file and the database (and the executable binary as well) are already available on the cluster. 
             You can run HPC-T-Annotator on your cluster by generating all the necessary files through our interface, filling out the form as follows.</p>
             
-            <img src="static/example_1.png" alt="HPC-T-Annotator example" style="width: 100%;">
-            <img src="static/example_2.png" alt="HPC-T-Annotator example" style="width: 100%;">
+            <img src="static/slurm_example.png" alt="HPC-T-Annotator example" style="width: 100%;">
+
+            <p>Now, you must fill the second part of the form with the following alignment software settings:</p>
+
+            <img src="static/alignment_example.png" alt="HPC-T-Annotator example" style="width: 100%;">
         
             <p>The images above show the filled HPC-T-Annotator interface. In this context, we have assumed that:</p>
             <ul>
@@ -75,18 +80,23 @@
                 <li><b>Additional options:</b> are <i>-k 5 --ultra-sensitive</i>.</li>
             </ul>
         
-            <p>Now, all we have to do is click on the "Generate" button and the interface automatically generates the software package in TAR format. 
-            After that, you can upload the package to your HPC cluster using the <b>scp</b> Unix command as follows:</p>
+            <p>Now, all we have to do is click on the "Generate" button and the interface automatically generates the software package in TAR format.</p>
+        </div>
+    </div>
+    <div class="block">
+        <h3>Step 2: Upload and Run the Software Package to the HPC Cluster</h3>
+            <p>You can now upload the package to your HPC cluster using the <b>scp</b> Unix command as follows:</p>
         
             <br>
         
             <div class="code-cell">
-                scp hpc-t-annotator.tar user@<i>cluster_domain</i>:<i>path</i>/hpc-t-annotator.tar
+                scp hpc-t-annotator.tar user@<i>cluster_domain</i>:<i>/path/to/your/work/directory</i>/hpc-t-annotator.tar
             </div>
         
             <br>
         
-            <p>Where <i>cluster_domain</i> is the domain name of the HPC cluster, <i>path</i> is the path where the software package is uploaded, and <i>user</i> is the username of your account on the HPC cluster.</p>
+            <p>Where <i>cluster_domain</i> is the domain name of the HPC cluster, <i>/path/to/your/work/directory</i> 
+                is the path where the software package is uploaded, and <i>user</i> is the username of your account on the HPC cluster.</p>
         
             <br>
         
@@ -111,8 +121,82 @@
             <br>
         
             <p>After the computation process has ended (check the general.log file for the status), the final result will be in the <b>/home/user/assembly/final_blast.tsv</b> file.</p>
-        </div>
-
     </div>
+
+    <div class="block">
+        <div>
+        <h3>Step 3: Results Analysis</h3>
+            <p>Once the entire computation process has ended (check the general.log file for the status), 
+                you can download the <b>/home/user/assembly/final_blast.tsv</b> file using the <b>scp</b> Unix command as follows:</p>
+        
+            <br>
+        
+            <div class="code-cell">
+                scp user@<i>cluster_domain</i>:<i>/home/user/assembly/final_blast.tsv</i> <i>/path/to/your/work/directory</i>
+            </div>
+        
+            <br>
+        
+            <p>Where <i>cluster_domain</i> is the domain name of the HPC cluster, <i>/path/to/your/work/directory</i> 
+                is the path where the software package is uploaded, and <i>user</i> is the username of your account on the HPC cluster.</p>
+        
+            <br>
+
+            <p>Now, you have to choose how to use the <a href="https://github.com/lorenzo-arcioni/BioSwiftAnalytics" target=”_blank”>Jupyter notebooks</a> to visualize the results. You can use these three options:</p>
+
+            <ul>
+                <li style="margin-left: 50px; margin-top: 10px;">-<b> Google Colab</b>: you can use the Jupyter notebooks in Google Colab. Remember that you have to
+                    load the TSV results file into your Google Colab environment before.</li>
+
+                <li style="margin-left: 50px; margin-top: 10px;">-<b> Docker</b>: you can open the Jupyter notebooks in 
+                    <a href="https://hub.docker.com/repository/docker/lorenzoarcioni/bioswiftanalytics/general" target=”_blank”>this</a> Docker environment. 
+                    Please follow the instructions in the <a href="https://github.com/lorenzo-arcioni/BioSwiftAnalytics/blob/main/README.md" target=”_blank”>README</a> file or
+                    in <a href="https://www.youtube.com/watch?v=V5ZuZsQ2f6A" target=”_blank”>this</a> YouTube video to
+                    correctly configure and run the Docker environment. In this case, remember to put the TSV results file in the <b>/path/to/your/work/results</b> 
+                    directory that you have linked to the Docker container.</li>
+
+                <li style="margin-left: 50px; margin-top: 10px;">-<b> Customized</b>: you can open the Jupyter notebooks in a customized environment.</li>
+            </ul>
+
+            <br>
+
+            <h4>Results Analysis with Google Colab</h4>
+        
+            <p>Let's now analyze the results using the <b>Google Colab</b> option.</p>
+
+            <br>
+
+            <p>First, open the GitHub repository of <a href="https://github.com/lorenzo-arcioni/BioSwiftAnalytics" target=”_blank”>BioSwiftAnalytics</a> 
+                and select a notebook from the directory <b>notebooks</b> and click on the <b>Colab</b> button.</p>
+
+            <img src="static/screenshot_1.png" alt="HPC-T-Annotator example" style="width: 100%;">
+
+            <br>
+
+            <p>Now, you can load the TSV results file into your Jupyter environment dragging and dropping it.</p>
+
+            <img src="static/screenshot_2.png" alt="HPC-T-Annotator example" style="width: 100%;">
+
+            <br>
+
+            <p>Now, you have to fill, with your data, the notebook's cell parameters. In particular, 
+                you need to specify the path of the TSV results file, the execution <i>outformat</i>, and the <i>output</i> directory. 
+                And next, you can click on the <b>Run</b> button.</p>
+
+            <br>
+
+            <p>After executing all notebook's cells,</p>
+            <img src="static/screenshot_3.png" alt="HPC-T-Annotator example" style="width: 100%;">
+            <img src="static/screenshot_4.png" alt="HPC-T-Annotator example" style="width: 100%;">
+
+            <br>
+
+            <p>you can download the results from the <b>Colab cloud space</b> directory.</p>
+            <img src="static/screenshot_5.png" alt="HPC-T-Annotator example" style="width: 100%;">
+        
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

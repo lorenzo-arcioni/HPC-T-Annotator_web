@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>HPC-T-Annotator Interface Guide</title>
-    <link rel="stylesheet" type="text/css" href="static/styles.css">
-    <link rel="icon" type="image/x-icon" href="static/logo.ico">
-    <script src="static/scripts.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../static/styles.css">
+    <link rel="icon" type="image/x-icon" href="../static/logo.ico">
+    <script src="../static/scripts.js" defer></script>
 </head>
 <body>
 
@@ -16,7 +16,7 @@
             <li><a href="tool.html">Tool</a></li>
             <li><a href="architecture.html">Architecture</a></li>
             <li>
-                <a href="help.html">Help</a>
+                <!-- <a href="help.html">Help</a> --><a>Help</a>
                 <ul class="dropdown-content">
                     <li><a href="interface_guide.html">Interface guide</a></li>
                     <li><a href="example.html">Step-by-step example</a></li>
@@ -29,17 +29,22 @@
 <div class="container">
     <div class="title">
         <div class="best" style="display: flex; align-items: center;">
-            <img src="static/logo.png" width="100" style="margin: auto;">
+            <img src="../static/logo.png" width="100" style="margin: auto;">
             <h1>HPC-T-Annotator</h1>
-            <img src="static/logo.png" width="100" style="margin: auto;">
+            <img src="../static/logo.png" width="100" style="margin: auto;">
         </div>
         <h2 id="subtitle">Interface Guide</h2>
     </div>
 
     <div class="description">
         <p>Welcome to the user guide for the HPC-T-Annotator interface. This guide will help you understand and utilize the features of the interface to configure and generate a customized software package for parallelization tasks involving annotation software. Follow the steps below to effectively use the interface.</p>
-    </div>
-    <div class="block">
+        <p>The web interface consists of two panels:</p>
+            <ul style="text-align: left;">
+                <li>- The upper panel, dedicated to setting SLURM parameters, and</li>
+                <li>- The bottom panel, for specifying the paths for the alignment software and the databases used.</li>
+            </ul>
+         <p>Here we show two examples of settings (scheduler SLURM, scheduler None) for the upper panel. Based on your selection, different configuration options will be displayed.</p>
+        
         <h3>Step 1: Workload Manager Settings</h3>
         <div>
             <p>Select a workload manager to configure settings:</p>
@@ -59,58 +64,58 @@
         <p>Based on your selection, different configuration options will be displayed.</p>
 
         <!-- Slurm configuration settings description here -->
-        <div class="conf" id="slurmConfPanel" style="display: none;">
+        <div class="conf" id="slurmConfPanel" style="display: none; text-align: left;">
             <h4>Slurm Configuration Settings</h4>
             <p>Configure the settings for Slurm workload manager:</p>
             <ul>
-                <li><strong>Job name</strong>: Specify the name of the job.</li>
-                <li><strong>Account name</strong>: Specify the name of the account for job submission.</li>
-                <li><strong>Serial partition</strong>: Enter the name of the serial partition for single-threaded jobs (you can also insert a parallel partition here).</li>
-                <li><strong>Parallel partition</strong>: Provide the name of the parallel partition for multi-threaded jobs.</li>
-                <li><strong>Number of processes</strong>: Set the desired number of processes. It must not excedeed the number of sequences (A range of 10-300 is recommended).</li>
-                <li><strong>Number of threads</strong>: Define the number of threads per process. Must be less than or equal to your parallel partition threads limit.</li>
-                <li><strong>Wall-time(hours)</strong>: Specify the maximum duration of the job in hours. Must be less than or equal to your parallel partition wall-time.</li>
-                <li><strong>Memory per process:</strong> Enter the memory requirement per process. Must be less than or equal to your node RAM limit.</li>
+                <li><strong>- Job name</strong>: Specify the name of the job.</li>
+                <li><strong>- Account name</strong>: Specify the name of the account for job submission.</li>
+                <li><strong>- Serial partition</strong>: Enter the name of the serial partition for single-threaded jobs (you can also insert a parallel partition here).</li>
+                <li><strong>- Parallel partition</strong>: Provide the name of the parallel partition for multi-threaded jobs.</li>
+                <li><strong>- Number of processes</strong>: Set the desired number of processes. It must not excedeed the number of sequences (A range of 10-300 is recommended).</li>
+                <li><strong>- Number of threads</strong>: Define the number of threads per process. Must be less than or equal to your parallel partition threads limit.</li>
+                <li><strong>- Wall-time(hours)</strong>: Specify the maximum duration of the job in hours. Must be less than or equal to your parallel partition wall-time.</li>
+                <li><strong>- Memory per process:</strong> Enter the memory requirement per process. Must be less than or equal to your node RAM limit.</li>
             </ul>
         </div>
 
         <!-- Base configuration settings description here -->
-        <div class="conf" id="noneConfPanel">
+        <div class="conf" id="noneConfPanel" style="text-align: left;">
             <h4>Base Configuration Settings</h4>
             <p>Configure basic settings when no workload manager is selected:</p>
             <ul>
-                <li><strong>Job name</strong>: Specify the name of the job.</li>
-                <li><strong>Number of processes</strong>: Set the desired number of processes. Must not excedeed the number of sequences.</li>
-                <li><strong>Threads</strong>: Specify the number of threads for processing.</li>
+                <li><strong>- Job name</strong>: Specify the name of the job.</li>
+                <li><strong>- Number of processes</strong>: Set the desired number of processes. Must not excedeed the number of sequences.</li>
+                <li><strong>- Threads</strong>: Specify the number of threads for processing.</li>
             </ul>
         </div>
-
+        <p>Below is a screenshot as an example of the SLURM settings.</p>
     </div>
+
     <div class="block">
+        <img src="../static/example_1.png" alt="HPC-T-Annotator example" style="width: 100%;">
+    </div>
+
+    <div class="description">
+    <p>In the case where 'None' is selected in the upper panel, the parameters to be set are the following:</p>
+
+    <div class="block">
+screenshot
+    </div>
+
+    <div class="description">
+    
         <h3>Step 2: Alignment Software Settings</h3>
-        <div>
-            <p>Select an annotation tool and configure settings:</p>
-
-            <ul>
-                <li>
-                    <label for="blast"><strong>Blast</strong></label>
-                </li>
-                <li>
-                    <label for="diamond"><strong>Diamond</strong></label>
-                </li>
-            </ul>
-        </div>
-
-        <p>Configure the settings for the selected annotation software:</p>
-        <ul>
-            <li><strong>Select an annotation tool</strong>: Choose either Blast or Diamond as annotation tool.</li>
-            <li><strong>Choose a tool</strong>: Select the specific tool to use (e.g., Blastp or Blastx).</li>
-            <li><strong>Database absolute path</strong>: Provide the absolute path to the reference database.</li>
-            <li><strong>Input file absolute path</strong>: Specify the absolute path to the input FASTA or Multi-FASTA file for annotation.</li>
-            <li><strong>Outdir absolute path</strong>: Specify the absolute path to the output directory.</li>
-            <li><strong>Binary absolute path</strong>: Enter the absolute path to the annotation software binary.</li>
-            <li><strong>Outformat</strong>: Define the output format for annotation results using double quotes (e.g., "6 qseqid sseqid...").</li>
-            <li><strong>Additional options</strong> Enter any additional options that you would like to access and input any extra parameters required.</li>
+        <p> In the bottom panel, the first step is to select the aligner to use (BLAST or DIAMOND). Once the software is selected, the following parameters need to be filled in the form:</p>
+        <ul style="text-align: left;">
+            <li><strong>- Select an annotation tool</strong>: Choose either Blast or Diamond as annotation tool.</li>
+            <li><strong>- Choose a tool</strong>: Select the specific tool to use (e.g., Blastp or Blastx).</li>
+            <li><strong>- Database absolute path</strong>: Provide the absolute path to the reference database.</li>
+            <li><strong>- Input file absolute path</strong>: Specify the absolute path to the input FASTA or Multi-FASTA file for annotation.</li>
+            <li><strong>- Outdir absolute path</strong>: Specify the absolute path to the output directory.</li>
+            <li><strong>- Binary absolute path</strong>: Enter the absolute path to the annotation software binary.</li>
+            <li><strong>- Outformat</strong>: Define the output format for annotation results using double quotes (e.g., "6 qseqid sseqid...").</li>
+            <li><strong>- Additional options</strong> Enter any additional options that you would like to access and input any extra parameters required.</li>
         </ul>
 
         <p>In note, for <strong>Additional options</strong> field, only options related to computation are accepted; options indicating the usage of threads and input/output 
@@ -119,9 +124,13 @@
             Use this field to provide any additional command-line options or parameters for the annotation tool. These options should be entered as you would on the command line, separated by spaces.
             For example, you can specify parameters like "-evalue 1e-5 -max_target_seqs 10" for a BLAST execution.</p>
     </div>
+
+    <div class="block">
+        <img src="../static/example_2.png" alt="HPC-T-Annotator example" style="width: 100%;">
+    </div>
     <div class="block">
         <h3>Generating the Software Package</h3>
-        <div>
+        <div style="text-align: left;">
             <p>After configuring the settings for both workload manager and annotation software, you can:</p>
 
             <ul>
@@ -136,7 +145,7 @@
     <div class="description">  
         <p style="text-align: center;">The following step must be done on the HPC cluster.</p>
     </div>
-    <div class="block">
+    <div class="block" style="text-align: left;">
         <h3>Extract the TAR archive and run</h3>
         <div>
             <p>After downloading the TAR archive (and, if you want, uploading the archive on HPC cluster) you have to unTAR the archive and then run the start 
@@ -159,7 +168,7 @@
     <div class="description">  
         <p style="text-align: center;">Once the entire computation process has ended (check the general.log file for the status), the final result will be in <b>tmp/final_blast.tsv</b> file.</p>
     </div>
-    <div class="block">
+    <div class="block" style="text-align: left;">
         <h3>Some useful monitoring commands</h3>
         <div>
             <h4>Check that all jobs are finished</h4>
@@ -210,7 +219,7 @@
         <p style="text-align: center;">A little example that shows a simple usecase of HPC-T-Annotator on a HPC cluster.</p>
     </div>
 
-    <div class="block">
+    <div class="block" style="text-align: left;">
         <h3>Step-by-step example</h3>
 
         <div>
@@ -223,8 +232,8 @@
             <p>Suppose also that you have an HPC cluster, with the SLURM workload manager, at your disposal. Both the transcriptome file and the database (and the executable binary as well) are already available on the cluster. 
                You can run HPC-T-Annotator on your cluster by generating all the necessary files through our interface, filling out the form as follows.</p>
             
-            <img src="static/example_1.png" alt="HPC-T-Annotator example" style="width: 100%;">
-            <img src="static/example_2.png" alt="HPC-T-Annotator example" style="width: 100%;">
+            <img src="../static/example_1.png" alt="HPC-T-Annotator example" style="width: 100%;">
+            <img src="../static/example_2.png" alt="HPC-T-Annotator example" style="width: 100%;">
         
             <p>The images above show the filled HPC-T-Annotator interface. In this context, we have assumed that:</p>
             <ul>
